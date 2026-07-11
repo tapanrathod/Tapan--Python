@@ -1,0 +1,21 @@
+customer_id,customer_name,gender,city,state,signup_date
+C001,Aarav Patel,M,Ahmedabad,Gujarat,2024-01-12
+C002,Diya Sharma,F,Mumbai,Maharashtra,2024-02-18
+C003,Vivaan Mehta,M,Surat,Gujarat,2024-03-05
+C004,Ananya Verma,F,Delhi,Delhi,2024-01-28
+C005,Krish Shah,M,Rajkot,Gujarat,2024-04-10
+C006,Isha Joshi,F,Pune,Maharashtra,2024-02-02
+C007,Rohan Desai,M,Vadodara,Gujarat,2024-03-19
+C008,Kavya Nair,F,Bengaluru,Karnataka,2024-01-14
+C009,Arjun Singh,M,Jaipur,Rajasthan,2024-05-01
+C010,Meera Kapoor,F,Chandigarh,Chandigarh,2024-02-26
+C011,Yash Trivedi,M,Ahmedabad,Gujarat,2024-03-30
+C012,Simran Kaur,F,Ludhiana,Punjab,2024-04-15
+C013,Dev Malhotra,M,Delhi,Delhi,2024-01-20
+C014,Riya Pandey,F,Patna,Bihar,2024-05-05
+C015,Aditya Rao,M,Hyderabad,Telangana,2024-03-12
+C016,Priya Iyer,F,Chennai,Tamil Nadu,2024-02-08
+C017,Karan Chauhan,M,Indore,Madhya Pradesh,2024-04-22
+C018,Neha Soni,F,Udaipur,Rajasthan,2024-05-11
+C019,Siddharth Jain,M,Nagpur,Maharashtra,2024-01-30
+C020,Pooja Mishra,F,Kanpur,Uttar Pradesh,2024-03-25

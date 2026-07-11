@@ -1,0 +1,15 @@
+order_id,customer_id,product_id,order_date,quantity,total_amount,payment_mode,order_status
+O001,C001,P001,2025-01-05,1,65000,Credit Card,Delivered
+O002,C001,P003,2025-01-07,2,5000,UPI,Delivered
+O003,C002,P002,2025-01-08,1,28000,Debit Card,Cancelled
+O004,C003,P005,2025-01-08,3,2700,Cash,Delivered
+O005,C001,P010,2025-01-10,1,3200,UPI,Shipped
+O006,C004,P004,2025-01-11,2,3600,Credit Card,Delivered
+O007,C005,P006,2025-01-11,1,22000,Net Banking,Pending
+O008,C006,P009,2025-01-12,2,9000,UPI,Delivered
+O009,C002,P007,2025-01-13,1,14500,Debit Card,Returned
+O010,C007,P012,2025-01-13,3,4500,Cash,Delivered
+O011,C008,P015,2025-01-14,5,3500,UPI,Delivered
+O012,C009,P014,2025-01-15,1,5200,Credit Card,Cancelled
+O013,C010,P011,2025-01-15,1,55000,Net Banking,Delivered
+O014,C003,P013,2025-01-16,2,5600,UPI,Shipped

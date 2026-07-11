@@ -1,0 +1,2 @@
+https://www.mysqltutorial.org/
+https://media.datacamp.com/legacy/image/upload/v1713890725/Marketing/Blog/SQL_Window_Functions_1_1.pdf

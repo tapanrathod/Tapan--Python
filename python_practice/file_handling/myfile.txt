@@ -1,0 +1,2 @@
+Hello, this is a simple program to write in a file.
+This is an appended line.

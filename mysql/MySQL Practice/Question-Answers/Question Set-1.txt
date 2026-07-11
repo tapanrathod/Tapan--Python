@@ -1,0 +1,452 @@
+==========================================================
+                MYSQL PRACTICE QUESTIONS
+==========================================================
+
+Topics:
+- CREATE DATABASE
+- DROP DATABASE
+- CREATE TABLE
+- PRIMARY KEY
+- NOT NULL
+- UNIQUE
+- CHECK
+- INSERT (Single Row)
+- INSERT (Multiple Rows)
+- UPDATE
+
+----------------------------------------------------------
+CREATE DATABASE
+----------------------------------------------------------
+
+1. Create a database named LibraryDB.
+
+2. Create a database named SchoolDB.
+
+3. Create a database named HospitalDB.
+
+4. Create a database named CollegeDB.
+
+5. Create a database named BankDB.
+
+6. Create a database named RestaurantDB.
+
+7. Create a database named MovieDB.
+
+8. Create a database named EmployeeDB.
+
+9. Create a database named SportsDB.
+
+10. Create a database named TravelDB.
+
+
+----------------------------------------------------------
+DROP DATABASE
+----------------------------------------------------------
+
+11. Drop the database MovieDB.
+
+12. Drop the database SportsDB.
+
+13. Drop the database TravelDB.
+
+14. Drop the database RestaurantDB.
+
+15. Drop the database BankDB.
+
+
+----------------------------------------------------------
+CREATE TABLE
+----------------------------------------------------------
+
+16. In LibraryDB, create a table named Books.
+
+Fields:
+BookID - Primary Key
+Title - Not Null
+Author - Not Null
+ISBN - Unique
+Price - Check (Price > 0)
+
+----------------------------------------------------------
+
+17. In SchoolDB, create a table named Students.
+
+Fields:
+StudentID - Primary Key
+StudentName - Not Null
+Email - Unique
+Age - Check (Age between 5 and 25)
+
+----------------------------------------------------------
+
+18. In HospitalDB, create a table named Patients.
+
+Fields:
+PatientID - Primary Key
+PatientName - Not Null
+Phone - Unique
+Age - Check (Age > 0)
+
+----------------------------------------------------------
+
+19. In CollegeDB, create a table named Courses.
+
+Fields:
+CourseID - Primary Key
+CourseName - Not Null
+CourseCode - Unique
+Duration - Check (Duration > 0)
+
+----------------------------------------------------------
+
+20. In EmployeeDB, create a table named Employees.
+
+Fields:
+EmployeeID - Primary Key
+EmployeeName - Not Null
+Email - Unique
+Salary - Check (Salary >= 10000)
+
+----------------------------------------------------------
+
+21. In BankDB, create a table named Accounts.
+
+Fields:
+AccountNo - Primary Key
+CustomerName - Not Null
+AadhaarNo - Unique
+Balance - Check (Balance >= 0)
+
+----------------------------------------------------------
+
+22. In RestaurantDB, create a table named MenuItems.
+
+Fields:
+ItemID - Primary Key
+ItemName - Not Null
+Price - Check (Price > 0)
+
+----------------------------------------------------------
+
+23. In MovieDB, create a table named Movies.
+
+Fields:
+MovieID - Primary Key
+MovieName - Not Null
+Language - Not Null
+Rating - Check (Rating between 1 and 10)
+
+----------------------------------------------------------
+
+24. In SportsDB, create a table named Players.
+
+Fields:
+PlayerID - Primary Key
+PlayerName - Not Null
+JerseyNo - Unique
+Age - Check (Age > 15)
+
+----------------------------------------------------------
+
+25. In TravelDB, create a table named Passengers.
+
+Fields:
+PassengerID - Primary Key
+PassengerName - Not Null
+PassportNo - Unique
+Age - Check (Age > 0)
+
+
+----------------------------------------------------------
+INSERT SINGLE ROW
+----------------------------------------------------------
+
+26. Insert one student into Students.
+
+Data:
+StudentID = 101
+StudentName = Rahul
+Email = rahul@gmail.com
+Age = 20
+
+----------------------------------------------------------
+
+27. Insert one book into Books.
+
+Data:
+BookID = 1
+Title = Python Basics
+Author = John Smith
+ISBN = BK1001
+Price = 650
+
+----------------------------------------------------------
+
+28. Insert one employee into Employees.
+
+Data:
+EmployeeID = 501
+EmployeeName = Amit
+Email = amit@gmail.com
+Salary = 45000
+
+----------------------------------------------------------
+
+29. Insert one patient into Patients.
+
+Data:
+PatientID = 301
+PatientName = Neha
+Phone = 9876543210
+Age = 30
+
+----------------------------------------------------------
+
+30. Insert one account into Accounts.
+
+Data:
+AccountNo = 10001
+CustomerName = Rakesh
+AadhaarNo = 123412341234
+Balance = 25000
+
+----------------------------------------------------------
+
+31. Insert one menu item into MenuItems.
+
+Data:
+ItemID = 1
+ItemName = Pizza
+Price = 350
+
+----------------------------------------------------------
+
+32. Insert one movie into Movies.
+
+Data:
+MovieID = 201
+MovieName = Interstellar
+Language = English
+Rating = 9
+
+----------------------------------------------------------
+
+33. Insert one player into Players.
+
+Data:
+PlayerID = 15
+PlayerName = Virat
+JerseyNo = 18
+Age = 36
+
+----------------------------------------------------------
+
+34. Insert one passenger into Passengers.
+
+Data:
+PassengerID = 401
+PassengerName = Priya
+PassportNo = P1234567
+Age = 28
+
+----------------------------------------------------------
+
+35. Insert one course into Courses.
+
+Data:
+CourseID = 10
+CourseName = Data Science
+CourseCode = DS101
+Duration = 12
+
+
+----------------------------------------------------------
+INSERT MULTIPLE ROWS
+----------------------------------------------------------
+
+36. Insert the following three students into Students.
+
+Data:
+102, Sneha, sneha@gmail.com, 19
+103, Karan, karan@gmail.com, 21
+104, Meera, meera@gmail.com, 18
+
+----------------------------------------------------------
+
+37. Insert the following three books into Books.
+
+Data:
+2, Java Programming, James Gosling, BK1002, 850
+3, SQL Guide, David Miller, BK1003, 500
+4, HTML Basics, Kevin Brown, BK1004, 300
+
+----------------------------------------------------------
+
+38. Insert the following three employees into Employees.
+
+Data:
+502, Raj, raj@gmail.com, 50000
+503, Simran, simran@gmail.com, 60000
+504, Mohan, mohan@gmail.com, 42000
+
+----------------------------------------------------------
+
+39. Insert the following three patients into Patients.
+
+Data:
+302, Aarav, 9876500001, 22
+303, Riya, 9876500002, 27
+304, Kabir, 9876500003, 31
+
+----------------------------------------------------------
+
+40. Insert the following three menu items into MenuItems.
+
+Data:
+2, Burger, 180
+3, Sandwich, 120
+4, Pasta, 260
+
+
+----------------------------------------------------------
+UPDATE
+----------------------------------------------------------
+
+41. Update the salary of EmployeeID 503 to 65000.
+
+42. Update the price of BookID 2 to 900.
+
+43. Update the age of StudentID 101 to 21.
+
+44. Update the balance of AccountNo 10001 to 50000.
+
+45. Update the price of Pizza to 400.
+
+46. Update the rating of MovieID 201 to 10.
+
+47. Update the phone number of PatientID 301 to 9988776655.
+
+48. Update the passport number of PassengerID 401 to P9876543.
+
+49. Update the duration of CourseID 10 to 18 months.
+
+50. Update the email of EmployeeID 504 to mohan123@gmail.com.
+
+==========================================================
+ADDITIONAL MYSQL PRACTICE QUESTIONS
+==========================================================
+
+51. In LibraryDB, create a table named Members.
+
+Fields:
+MemberID - Primary Key
+MemberName - Not Null
+Email - Unique
+Age - Check (Age >= 10)
+
+----------------------------------------------------------
+
+52. In SchoolDB, create a table named Teachers.
+
+Fields:
+TeacherID - Primary Key
+TeacherName - Not Null
+Email - Unique
+Salary - Check (Salary >= 25000)
+
+----------------------------------------------------------
+
+53. In HospitalDB, create a table named Doctors.
+
+Fields:
+DoctorID - Primary Key
+DoctorName - Not Null
+Specialization - Not Null
+Phone - Unique
+
+----------------------------------------------------------
+
+54. In CollegeDB, create a table named Departments.
+
+Fields:
+DepartmentID - Primary Key
+DepartmentName - Not Null
+DepartmentCode - Unique
+
+----------------------------------------------------------
+
+55. In EmployeeDB, create a table named Departments.
+
+Fields:
+DepartmentID - Primary Key
+DepartmentName - Not Null
+Location - Not Null
+
+----------------------------------------------------------
+
+56. Insert one member into Members.
+
+Data:
+MemberID = 201
+MemberName = Ankit
+Email = ankit@gmail.com
+Age = 24
+
+----------------------------------------------------------
+
+57. Insert one teacher into Teachers.
+
+Data:
+TeacherID = 101
+TeacherName = Pooja
+Email = pooja@gmail.com
+Salary = 48000
+
+----------------------------------------------------------
+
+58. Insert one doctor into Doctors.
+
+Data:
+DoctorID = 11
+DoctorName = Dr. Kunal
+Specialization = Cardiologist
+Phone = 9876540001
+
+----------------------------------------------------------
+
+59. Insert the following three departments into Departments (CollegeDB).
+
+Data:
+1, Computer Science, CS
+2, Mechanical Engineering, ME
+3, Civil Engineering, CE
+
+----------------------------------------------------------
+
+60. Insert the following three members into Members.
+
+Data:
+202, Riya, riya@gmail.com, 20
+203, Harsh, harsh@gmail.com, 22
+204, Neel, neel@gmail.com, 21
+
+----------------------------------------------------------
+
+61. Update the email of MemberID 201 to ankit123@gmail.com.
+
+----------------------------------------------------------
+
+62. Update the salary of TeacherID 101 to 55000.
+
+----------------------------------------------------------
+
+63. Update the specialization of DoctorID 11 to Neurologist.
+
+----------------------------------------------------------
+
+64. Update the location of DepartmentID 2 in EmployeeDB Departments table to Ahmedabad.
+
+----------------------------------------------------------
+
+65. Update the department name of DepartmentID 3 in CollegeDB Departments table to Information Technology.
+

@@ -1,0 +1,11 @@
+Order_ID,Date,Customer,Gender,Product,Category,Quantity,Price,Revenue
+1001,05-01-2024,Amit,Male,Laptop,Electronics,1,55000,55000
+1002,12-01-2024,Priya,Female,Chair,Furniture,2,3500,7000
+1003,03-02-2024,Rahul,Male,Mobile,Electronics,3,18000,54000
+1004,15-02-2024,Neha,Female,Table,Furniture,1,8500,8500
+1005,08-03-2024,Vikram,Male,Headphones,Electronics,4,2500,10000
+1006,20-03-2024,Anjali,Female,Sofa,Furniture,1,28000,28000
+1007,02-04-2024,Rohan,Male,Monitor,Electronics,2,12000,24000
+1008,18-04-2024,Kavya,Female,Desk,Furniture,1,9500,9500
+1009,10-05-2024,Arjun,Male,Keyboard,Electronics,5,1500,7500
+1010,25-05-2024,Meera,Female,Bookshelf,Furniture,2,6500,13000

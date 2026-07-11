@@ -1,0 +1,21 @@
+product_id,product_name,category,brand,price,stock,rating
+P001,Laptop,Electronics,HP,65000,15,4.5
+P002,Smartphone,Electronics,Samsung,28000,30,4.3
+P003,Headphones,Accessories,Boat,2500,50,4.1
+P004,Keyboard,Accessories,Logitech,1800,40,4.4
+P005,Mouse,Accessories,HP,900,60,4.0
+P006,Tablet,Electronics,Lenovo,22000,20,4.2
+P007,Monitor,Electronics,Dell,14500,18,4.6
+P008,Printer,Electronics,Canon,12000,10,4.1
+P009,Smartwatch,Wearables,Noise,4500,35,4.0
+P010,Speaker,Accessories,JBL,3200,25,4.5
+P011,Camera,Electronics,Sony,55000,8,4.7
+P012,Power Bank,Accessories,Mi,1500,45,3.9
+P013,Router,Networking,TP-Link,2800,22,4.2
+P014,External HDD,Storage,Seagate,5200,16,4.4
+P015,Pen Drive,Storage,SanDisk,700,80,4.0
+P016,Office Chair,Furniture,GreenSoul,8500,12,4.3
+P017,Study Table,Furniture,Ikea,12500,9,4.5
+P018,Air Conditioner,Home Appliances,LG,42000,7,4.6
+P019,Refrigerator,Home Appliances,Samsung,38000,6,4.4
+P020,Microwave,Home Appliances,IFB,11000,11,4.1

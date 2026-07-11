@@ -1,0 +1,42 @@
+use practice;
+
+SHOW DATABASES;
+SELECT DATABASE();
+
+SHOW TABLES;
+SHOW TABLES FROM count;
+
+SHOW TABLE STATUS;
+
+SHOW CREATE TABLE employee;
+
+DESCRIBE employee;
+
+SHOW COLUMNS FROM employee;
+
+SHOW INDEX FROM employee;
+
+SHOW KEYS FROM EMPLOYEE;
+
+SELECT USER();
+
+SHOW GRANTS FOR 'root'@'localhost';
+
+SHOW VARIABLES;
+
+SHOW VARIABLES LIKE 'version%';
+
+SELECT VERSION();
+
+SHOW STATUS;
+
+SHOW PROCESSLIST;
+
+SHOW ENGINES;
+
+SHOW TABLE STATUS LIKE 'employee';
+
+SELECT * FROM information_schema.tables;
+
+SELECT employee1 FROM information_schema.tables WHERE TABLE_SCHEMA = practice;
+

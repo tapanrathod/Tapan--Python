@@ -1,0 +1,16 @@
+studentid,name,class,gender,subject,marks,attendance
+1,Rahul,10,Male,Maths,85,92
+2,Priya,10,Female,Science,90,95
+3,Amit,9,Male,English,78,88
+4,Neha,9,Female,Maths,95,97
+5,Karan,10,Male,Science,82,91
+6,Riya,8,Female,English,88,93
+7,Arjun,8,Male,Maths,76,85
+8,Pooja,9,Female,Science,91,96
+9,Vikas,10,Male,English,80,89
+10,Sneha,8,Female,Maths,94,98
+11,Rohan,9,Male,Science,72,84
+12,Anjali,10,Female,English,87,92
+13,Yash,8,Male,Maths,81,90
+14,Kavya,9,Female,Science,89,94
+15,Manav,10,Male,Maths,93,97

@@ -1,0 +1,61 @@
+==========================================================
+MYSQL PRACTICE QUESTIONS - ALTER TABLE
+==========================================================
+
+1. In LibraryDB, alter the Books table to add a new column named Publisher of type VARCHAR(100).
+
+----------------------------------------------------------
+
+2. In SchoolDB, alter the Students table to add a new column named Gender of type VARCHAR(10).
+
+----------------------------------------------------------
+
+3. In HospitalDB, alter the Patients table to add a new column named BloodGroup of type VARCHAR(5).
+
+----------------------------------------------------------
+
+4. In CollegeDB, alter the Courses table to add a new column named Fees of type DECIMAL(10,2).
+
+----------------------------------------------------------
+
+5. In EmployeeDB, alter the Employees table to add a new column named Department of type VARCHAR(50).
+
+----------------------------------------------------------
+
+6. In BankDB, alter the Accounts table to modify the CustomerName column to VARCHAR(150).
+
+----------------------------------------------------------
+
+7. In RestaurantDB, alter the MenuItems table to modify the ItemName column to VARCHAR(120).
+
+----------------------------------------------------------
+
+8. In MovieDB, alter the Movies table to modify the Rating column to DECIMAL(3,1).
+
+----------------------------------------------------------
+
+9. In SportsDB, alter the Players table to rename the column JerseyNo to JerseyNumber.
+
+----------------------------------------------------------
+
+10. In TravelDB, alter the Passengers table to rename the column PassengerName to FullName.
+
+----------------------------------------------------------
+
+11. In LibraryDB, alter the Books table to drop the Publisher column.
+
+----------------------------------------------------------
+
+12. In SchoolDB, alter the Students table to drop the Gender column.
+
+----------------------------------------------------------
+
+13. In EmployeeDB, alter the Employees table to rename the table Employees to StaffMembers.
+
+----------------------------------------------------------
+
+14. In RestaurantDB, alter the MenuItems table to rename the table MenuItems to FoodItems.
+
+----------------------------------------------------------
+
+15. In CollegeDB, alter the Courses table to add a CHECK constraint that ensures Fees is greater than 0.
