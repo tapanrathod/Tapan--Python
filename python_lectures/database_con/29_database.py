@@ -118,6 +118,3 @@ print(data)
 
 
 con.close()
-
-
-
