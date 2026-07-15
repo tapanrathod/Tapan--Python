@@ -11,3 +11,9 @@ SELECT * FROM employees ORDER BY `Gender` ASC, `Salary` DESC;
 SELECT * FROM employees ORDER BY `Salary` DESC LIMIT 3;
 
 -- group by department min max avg sum of top 2
+
+SELECT * 
+FROM employees 
+ORDER BY Salary DESC 
+LIMIT 2;
+

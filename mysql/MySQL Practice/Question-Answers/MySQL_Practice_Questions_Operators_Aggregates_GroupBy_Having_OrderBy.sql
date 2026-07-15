@@ -310,6 +310,9 @@ SELECT AVG(Experience) FROM Employees;
 -- ## Part I – GROUP BY
 
 -- 66. Display the number of employees in each department.
+
+SELECT COUNT(*) FROM Employees GROUP BY Department;
+
 -- 67. Display the number of employees in each city.
 -- 68. Find the minimum salary department-wise.
 -- 69. Find the maximum salary department-wise.
