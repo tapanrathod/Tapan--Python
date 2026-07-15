@@ -8,14 +8,14 @@ MySQL operators are symbols or keywords used to perform operations on values, co
 
 Used for mathematical calculations.
 
-| Operator | Description | Example | Output |
-|----------|-------------|---------|-------:|
-| `+` | Addition | `SELECT 10 + 5;` | 15 |
-| `-` | Subtraction | `SELECT 10 - 5;` | 5 |
-| `*` | Multiplication | `SELECT 10 * 5;` | 50 |
-| `/` | Division | `SELECT 10 / 5;` | 2 |
-| `%` | Modulus (Remainder) | `SELECT 10 % 3;` | 1 |
-| `MOD()` | Modulus Function | `SELECT MOD(10,3);` | 1 |
+| Operator  | Description         | Example               | Output |
+| --------- | ------------------- | --------------------- | -----: |
+| `+`     | Addition            | `SELECT 10 + 5;`    |     15 |
+| `-`     | Subtraction         | `SELECT 10 - 5;`    |      5 |
+| `*`     | Multiplication      | `SELECT 10 * 5;`    |     50 |
+| `/`     | Division            | `SELECT 10 / 5;`    |      2 |
+| `%`     | Modulus (Remainder) | `SELECT 10 % 3;`    |      1 |
+| `MOD()` | Modulus Function    | `SELECT MOD(10,3);` |      1 |
 
 ### Examples
 
@@ -33,15 +33,15 @@ SELECT 17 % 5;
 
 Used to compare two values.
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `=` | Equal To | `Salary = 50000` |
-| `!=` | Not Equal To | `Salary != 50000` |
-| `<>` | Not Equal To | `Salary <> 50000` |
-| `>` | Greater Than | `Salary > 50000` |
-| `<` | Less Than | `Salary < 50000` |
-| `>=` | Greater Than or Equal To | `Salary >= 50000` |
-| `<=` | Less Than or Equal To | `Salary <= 50000` |
+| Operator | Description              | Example             |
+| -------- | ------------------------ | ------------------- |
+| `=`    | Equal To                 | `Salary = 50000`  |
+| `!=`   | Not Equal To             | `Salary != 50000` |
+| `<>`   | Not Equal To             | `Salary <> 50000` |
+| `>`    | Greater Than             | `Salary > 50000`  |
+| `<`    | Less Than                | `Salary < 50000`  |
+| `>=`   | Greater Than or Equal To | `Salary >= 50000` |
+| `<=`   | Less Than or Equal To    | `Salary <= 50000` |
 
 ### Example
 
@@ -57,12 +57,12 @@ WHERE Salary >= 60000;
 
 Used to combine multiple conditions.
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `AND` | All conditions must be TRUE | `Salary > 50000 AND Age > 30` |
-| `OR` | At least one condition must be TRUE | `Department='IT' OR Department='HR'` |
-| `NOT` | Reverses a condition | `NOT Department='Sales'` |
-| `XOR` | Exactly one condition must be TRUE | `Age > 30 XOR Salary > 70000` |
+| Operator | Description                         | Example                                |
+| -------- | ----------------------------------- | -------------------------------------- |
+| `AND`  | All conditions must be TRUE         | `Salary > 50000 AND Age > 30`        |
+| `OR`   | At least one condition must be TRUE | `Department='IT' OR Department='HR'` |
+| `NOT`  | Reverses a condition                | `NOT Department='Sales'`             |
+| `XOR`  | Exactly one condition must be TRUE  | `Age > 30 XOR Salary > 70000`        |
 
 ### Example
 
@@ -79,9 +79,9 @@ AND Salary > 60000;
 
 Used to assign values to variables.
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `:=` | Assign Value | `SET @x := 100;` |
+| Operator | Description  | Example            |
+| -------- | ------------ | ------------------ |
+| `:=`   | Assign Value | `SET @x := 100;` |
 
 ### Example
 
@@ -96,14 +96,14 @@ SELECT @salary;
 
 Used for binary operations.
 
-| Operator | Description | Example | Output |
-|----------|-------------|---------|-------:|
-| `&` | Bitwise AND | `SELECT 5 & 3;` | 1 |
-| `\|` | Bitwise OR | `SELECT 5 \| 3;` | 7 |
-| `^` | Bitwise XOR | `SELECT 5 ^ 3;` | 6 |
-| `~` | Bitwise NOT | `SELECT ~5;` | -6 |
-| `<<` | Left Shift | `SELECT 5 << 1;` | 10 |
-| `>>` | Right Shift | `SELECT 5 >> 1;` | 2 |
+| Operator | Description | Example            | Output |
+| -------- | ----------- | ------------------ | -----: |
+| `&`    | Bitwise AND | `SELECT 5 & 3;`  |      1 |
+| `\|`    | Bitwise OR  | `SELECT 5 \| 3;`  |      7 |
+| `^`    | Bitwise XOR | `SELECT 5 ^ 3;`  |      6 |
+| `~`    | Bitwise NOT | `SELECT ~5;`     |     -6 |
+| `<<`   | Left Shift  | `SELECT 5 << 1;` |     10 |
+| `>>`   | Right Shift | `SELECT 5 >> 1;` |      2 |
 
 ---
 
@@ -159,10 +159,10 @@ WHERE Department NOT IN ('IT','HR');
 
 Used for pattern matching.
 
-| Pattern | Meaning |
-|---------|---------|
-| `%` | Zero or More Characters |
-| `_` | Exactly One Character |
+| Pattern | Meaning                 |
+| ------- | ----------------------- |
+| `%`   | Zero or More Characters |
+| `_`   | Exactly One Character   |
 
 ### Examples
 
@@ -281,7 +281,7 @@ FROM Employees;
 
 # 16. REGEXP Operator
 
-Used for advanced pattern matching.
+Used for advanced pattern matching.	
 
 Names starting with A, B, or C
 
@@ -303,34 +303,34 @@ WHERE EmployeeName REGEXP 'a$';
 
 # Operator Precedence (Highest to Lowest)
 
-| Priority | Operators |
-|----------|-----------|
-| 1 | `()` (Parentheses) |
-| 2 | `BINARY`, `COLLATE` |
-| 3 | `!`, `NOT` |
-| 4 | `*`, `/`, `%`, `DIV`, `MOD` |
-| 5 | `+`, `-` |
-| 6 | `<<`, `>>` |
-| 7 | `&` |
-| 8 | `^` |
-| 9 | `\|` |
-| 10 | `=`, `>`, `<`, `>=`, `<=`, `!=`, `<>`, `LIKE`, `IN`, `BETWEEN`, `IS NULL`, `REGEXP` |
-| 11 | `AND`, `&&` |
-| 12 | `XOR` |
-| 13 | `OR`, `\|\|` |
+| Priority | Operators                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 1        | `()` (Parentheses)                                                                                        |
+| 2        | `BINARY`, `COLLATE`                                                                                     |
+| 3        | `!`, `NOT`                                                                                              |
+| 4        | `*`, `/`, `%`, `DIV`, `MOD`                                                                       |
+| 5        | `+`, `-`                                                                                                |
+| 6        | `<<`, `>>`                                                                                              |
+| 7        | `&`                                                                                                       |
+| 8        | `^`                                                                                                       |
+| 9        | `\|`                                                                                                       |
+| 10       | `=`, `>`, `<`, `>=`, `<=`, `!=`, `<>`, `LIKE`, `IN`, `BETWEEN`, `IS NULL`, `REGEXP` |
+| 11       | `AND`, `&&`                                                                                             |
+| 12       | `XOR`                                                                                                     |
+| 13       | `OR`, `\|\|`                                                                                              |
 
 ---
 
 # Summary
 
-| Category | Operators |
-|----------|-----------|
-| Arithmetic | `+`, `-`, `*`, `/`, `%`, `MOD()` |
-| Comparison | `=`, `!=`, `<>`, `>`, `<`, `>=`, `<=` |
-| Logical | `AND`, `OR`, `NOT`, `XOR` |
-| Assignment | `:=` |
-| Bitwise | `&`, `\|`, `^`, `~`, `<<`, `>>` |
-| Special | `BETWEEN`, `IN`, `NOT IN`, `LIKE`, `IS NULL`, `IS NOT NULL`, `EXISTS`, `ANY`, `ALL`, `DISTINCT`, `REGEXP` |
+| Category   | Operators                                                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Arithmetic | `+`, `-`, `*`, `/`, `%`, `MOD()`                                                                                    |
+| Comparison | `=`, `!=`, `<>`, `>`, `<`, `>=`, `<=`                                                                             |
+| Logical    | `AND`, `OR`, `NOT`, `XOR`                                                                                               |
+| Assignment | `:=`                                                                                                                          |
+| Bitwise    | `&`, `\|`, `^`, `~`, `<<`, `>>`                                                                                      |
+| Special    | `BETWEEN`, `IN`, `NOT IN`, `LIKE`, `IS NULL`, `IS NOT NULL`, `EXISTS`, `ANY`, `ALL`, `DISTINCT`, `REGEXP` |
 
 ---
 

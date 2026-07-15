@@ -6,19 +6,20 @@ Aggregate functions in MySQL perform calculations on a set of rows and return a 
 
 ## Sample Employee Table
 
-| EmpID | Name | Department | Salary | Age |
-|------:|------|------------|-------:|----:|
-| 1 | Alice | HR | 30000 | 25 |
-| 2 | Bob | IT | 50000 | 30 |
-| 3 | Charlie | IT | 60000 | 35 |
-| 4 | David | HR | 40000 | 28 |
-| 5 | Emma | Sales | 45000 | 32 |
+| EmpID | Name    | Department | Salary | Age |
+| ----: | ------- | ---------- | -----: | --: |
+|     1 | Alice   | HR         |  30000 |  25 |
+|     2 | Bob     | IT         |  50000 |  30 |
+|     3 | Charlie | IT         |  60000 |  35 |
+|     4 | David   | HR         |  40000 |  28 |
+|     5 | Emma    | Sales      |  45000 |  32 |
 
 ---
 
 # 1. COUNT()
 
 ## Definition
+
 The `COUNT()` function returns the number of rows that match a specified condition.
 
 ### Syntax
@@ -30,9 +31,8 @@ SELECT COUNT(*) FROM Employee;
 ### Output
 
 | COUNT(*) |
-|----------|
-| 5 |
-
+| -------- |
+| 5        |
 
 ### Example: Count Employees in IT Department
 
@@ -45,14 +45,15 @@ WHERE Department = 'IT';
 ### Output
 
 | Total_IT |
-|---------:|
-| 2 |
+| -------: |
+|        2 |
 
 ---
 
 # 2. SUM()
 
 ## Definition
+
 The `SUM()` function returns the total sum of a numeric column.
 
 ### Syntax
@@ -65,14 +66,15 @@ FROM Employee;
 ### Output
 
 | Total_Salary |
-|-------------:|
-| 225000 |
+| -----------: |
+|       225000 |
 
 ---
 
 # 3. AVG()
 
 ## Definition
+
 The `AVG()` function returns the average value of a numeric column.
 
 ### Syntax
@@ -91,14 +93,15 @@ FROM Employee;
 ### Output
 
 | Average_Salary |
-|---------------:|
-| 45000 |
+| -------------: |
+|          45000 |
 
 ---
 
 # 4. MIN()
 
 ## Definition
+
 The `MIN()` function returns the smallest value in a column.
 
 ### Syntax
@@ -111,14 +114,15 @@ FROM Employee;
 ### Output
 
 | Lowest_Salary |
-|--------------:|
-| 30000 |
+| ------------: |
+|         30000 |
 
 ---
 
 # 5. MAX()
 
 ## Definition
+
 The `MAX()` function returns the largest value in a column.
 
 ### Syntax
@@ -131,8 +135,8 @@ FROM Employee;
 ### Output
 
 | Highest_Salary |
-|---------------:|
-| 60000 |
+| -------------: |
+|          60000 |
 
 ---
 
@@ -156,10 +160,10 @@ GROUP BY Department;
 ### Output
 
 | Department | Employees | Total_Salary | Average_Salary | Minimum_Salary | Maximum_Salary |
-|------------|----------:|-------------:|---------------:|---------------:|---------------:|
-| HR | 2 | 70000 | 35000 | 30000 | 40000 |
-| IT | 2 | 110000 | 55000 | 50000 | 60000 |
-| Sales | 1 | 45000 | 45000 | 45000 | 45000 |
+| ---------- | --------: | -----------: | -------------: | -------------: | -------------: |
+| HR         |         2 |        70000 |          35000 |          30000 |          40000 |
+| IT         |         2 |       110000 |          55000 |          50000 |          60000 |
+| Sales      |         1 |        45000 |          45000 |          45000 |          45000 |
 
 ---
 
@@ -180,9 +184,9 @@ HAVING AVG(Salary) > 40000;
 ### Output
 
 | Department | Avg_Salary |
-|------------|-----------:|
-| IT | 55000 |
-| Sales | 45000 |
+| ---------- | ---------: |
+| IT         |      55000 |
+| Sales      |      45000 |
 
 ---
 
@@ -198,13 +202,13 @@ HAVING AVG(Salary) > 40000;
 
 # Summary Table
 
-| Function | Description | Example |
-|----------|-------------|---------|
-| `COUNT()` | Counts the number of rows or non-NULL values | `SELECT COUNT(*) FROM Employee;` |
-| `SUM()` | Returns the total sum of numeric values | `SELECT SUM(Salary) FROM Employee;` |
-| `AVG()` | Returns the average value | `SELECT AVG(Salary) FROM Employee;` |
-| `MIN()` | Returns the smallest value | `SELECT MIN(Salary) FROM Employee;` |
-| `MAX()` | Returns the largest value | `SELECT MAX(Salary) FROM Employee;` |
+| Function    | Description                                  | Example                               |
+| ----------- | -------------------------------------------- | ------------------------------------- |
+| `COUNT()` | Counts the number of rows or non-NULL values | `SELECT COUNT(*) FROM Employee;`    |
+| `SUM()`   | Returns the total sum of numeric values      | `SELECT SUM(Salary) FROM Employee;` |
+| `AVG()`   | Returns the average value                    | `SELECT AVG(Salary) FROM Employee;` |
+| `MIN()`   | Returns the smallest value                   | `SELECT MIN(Salary) FROM Employee;` |
+| `MAX()`   | Returns the largest value                    | `SELECT MAX(Salary) FROM Employee;` |
 
 ---
 

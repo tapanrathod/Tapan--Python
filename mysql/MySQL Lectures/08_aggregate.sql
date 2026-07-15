@@ -1,3 +1,4 @@
+-- Active: 1782301937005@@127.0.0.1@3306@operator_db
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
     EmployeeName VARCHAR(50),
@@ -35,3 +36,24 @@ SELECT COUNT(*) FROM employees WHERE Department = "Marketing";
 SELECT COUNT(*) FROM employees WHERE Gender= "F";
 
 SELECT * FROM employees;
+
+SELECT DISTINCT city from employees;
+
+SELECT COUNT(DISTINCT city) from employees;
+
+SELECT COUNT(DISTINCT department) from employees;
+
+SELECT COUNT(*) as CountAhm FROM employees WHERE `City` = "Ahmedabad";
+
+SELECT MIN(salary) FROM employees;
+
+SELECT MAX(salary) FROM employees;
+
+SELECT AVG(salary) FROM employees;
+
+SELECT SUM(salary) FROM employees;
+
+SELECT * FROM employees WHERE `Salary` >= 70000;
+
+SELECT COUNT(*) FROM employees WHERE `Salary` >= 70000;
+

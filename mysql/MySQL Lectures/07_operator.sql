@@ -111,3 +111,7 @@ SELECT * FROM employees WHERE `Salary` IS NULL;
 
 SELECT * FROM employees WHERE `Salary` IS NOT NULL;
 
+SELECT DISTINCT `Department` FROM employees;
+
+SELECT DISTINCT `City` FROM employees;
+
