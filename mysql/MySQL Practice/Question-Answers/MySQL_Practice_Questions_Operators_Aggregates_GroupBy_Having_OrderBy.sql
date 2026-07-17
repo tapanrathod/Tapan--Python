@@ -1,12 +1,12 @@
--- # MySQL Practice Questions
+-- MySQL Practice Questions
 
--- ## Topics Covered
+-- Topics Covered
 
--- - Operators
--- - Aggregate Functions
--- - GROUP BY
--- - HAVING
--- - ORDER BY
+-- Operators
+-- Aggregate Functions
+-- GROUP BY
+-- HAVING
+-- ORDER BY
 
 
 -- DataBase
@@ -417,6 +417,7 @@ SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department HAVING SUM(Bonu
 -- 90. Display departments whose average experience is greater than 8 years.
 
 SELECT Department, AVG(Experience) FROM Employees GROUP BY Department HAVING AVG(Experience) > 8;
+
 
 -- ## Part K – ORDER BY
 
