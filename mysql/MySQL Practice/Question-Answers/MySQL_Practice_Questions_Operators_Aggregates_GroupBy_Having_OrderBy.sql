@@ -314,68 +314,254 @@ SELECT AVG(Experience) FROM Employees;
 SELECT COUNT(*) FROM Employees GROUP BY Department;
 
 -- 67. Display the number of employees in each city.
+
+SELECT COUNT(*) FROM Employees GROUP BY City;
+
 -- 68. Find the minimum salary department-wise.
+
+SELECT Department, MIN(Salary) FROM Employees GROUP BY Department;
+
 -- 69. Find the maximum salary department-wise.
+
+SELECT Department, MAX(Salary) FROM Employees GROUP BY Department;
+
 -- 70. Find the average salary department-wise.
+
+SELECT Department, AVG(Salary) FROM Employees GROUP BY Department;
 -- 71. Find the total salary department-wise.
+
+SELECT Department, SUM(Salary) FROM Employees GROUP BY Department;
+
 -- 72. Display employee count by gender.
+
+SELECT Gender, COUNT(*) FROM Employees GROUP BY Gender;
+
 -- 73. Find the average salary for each gender.
+
+SELECT Gender, AVG(Salary) FROM Employees GROUP BY Gender;
+
 -- 74. Display department-wise minimum, maximum, average, sum, and count of salaries.
+
+SELECT Department, MIN(Salary), MAX(Salary), AVG(Salary), SUM(Salary), COUNT(Salary) FROM Employees GROUP BY Department;
+
 -- 75. Display department-wise and gender-wise salary statistics.
+
+SELECT Department, Gender,
+    MIN(Salary) as min_salary,
+    MAX(Salary) as max_salary,
+    AVG(Salary) as avg_salary,
+    SUM(Salary) as sum_salary,
+    COUNT(Salary) as count_salary
+FROM Employees
+GROUP BY Department, Gender;
+
 -- 76. Find total bonus department-wise.
+
+SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department;
+
 -- 77. Find average experience department-wise.
+
+SELECT Department, AVG(Experience) FROM Employees GROUP BY Department;
+
 -- 78. Find maximum age in each department.
+
+SELECT Department, MAX(Age) FROM Employees GROUP BY Department;
+
 -- 79. Count employees in each city and department.
+
+SELECT City, Department, COUNT(*) FROM Employees GROUP BY City, Department;
+
 -- 80. Find total salary city-wise.
+
+SELECT City, SUM(Salary) FROM Employees GROUP BY City;
+
 
 -- ## Part J – HAVING
 
 -- 81. Display departments whose average salary is at least 70,000.
+
+SELECT Department, AVG(Salary) FROM Employees GROUP BY Department HAVING AVG(Salary) >= 70000;
+
 -- 82. Display departments having more than 3 employees.
+
+SELECT Department, COUNT(*) FROM Employees GROUP BY Department HAVING COUNT(*) > 3;
+
 -- 83. Display departments whose total salary exceeds 2,00,000.
+
+SELECT Department, SUM(Salary) FROM Employees GROUP BY Department HAVING SUM(Salary) > 200000;
+
 -- 84. Find departments whose maximum salary is greater than 80,000.
+
+SELECT Department, MAX(Salary) FROM Employees GROUP BY Department HAVING MAX(Salary) > 80000;
+
 -- 85. Find departments whose minimum salary is below 45,000.
+
+SELECT Department, MIN(Salary) FROM Employees GROUP BY Department HAVING MIN(Salary) < 45000;
+
 -- 86. Display cities having more than two employees.
+
+SELECT City, COUNT(*) FROM Employees GROUP BY City HAVING COUNT(*) > 2;
+
 -- 87. Display genders having an average salary greater than 60,000.
+
+SELECT Gender, AVG(Salary) FROM Employees GROUP BY Gender HAVING AVG(Salary) > 60000;
+
 -- 88. Display departments whose employee count is exactly three.
+
+SELECT Department, COUNT(*) FROM Employees GROUP BY Department HAVING COUNT(*) = 3;
+
 -- 89. Display departments where total bonus is greater than 10,000.
+
+SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department HAVING SUM(Bonus) > 10000;
+
 -- 90. Display departments whose average experience is greater than 8 years.
+
+SELECT Department, AVG(Experience) FROM Employees GROUP BY Department HAVING AVG(Experience) > 8;
 
 -- ## Part K – ORDER BY
 
 -- 91. Display all employees sorted by salary in ascending order.
+
+SELECT * FROM Employees ORDER BY Salary ASC;
+SELECT * FROM Employees ORDER BY Salary;
+
 -- 92. Display all employees sorted by salary in descending order.
+
+SELECT * FROM Employees ORDER BY Salary DESC;
+
 -- 93. Display employees sorted alphabetically by EmployeeName.
+
+SELECT * FROM Employees ORDER BY EmployeeName;
+
 -- 94. Display employees sorted by Department.
+
+SELECT * FROM Employees ORDER BY Department;
+
 -- 95. Display employees sorted by Department (ascending) and Salary (descending).
+
+SELECT * FROM Employees ORDER BY Department, Salary DESC;
+
 -- 96. Display employees sorted by Gender and Salary.
+
+SELECT * FROM Employees ORDER BY Gender, Salary;
+
 -- 97. Display employees sorted by Age in descending order.
+
+SELECT * FROM Employees ORDER BY Age DESC;
+
 -- 98. Display employees sorted by Experience in ascending order.
+
+SELECT * FROM Employees ORDER BY Experience;
+
 -- 99. Display employees sorted by City and EmployeeName.
+
+SELECT * FROM Employees ORDER BY City, EmployeeName;
+
 -- 100. Display employees sorted by Bonus in descending order.
+
+SELECT * FROM Employees ORDER BY Bonus DESC;
+
 
 -- ## Part L – ORDER BY with LIMIT
 
 -- 101. Display the top 3 highest-paid employees.
+
+SELECT * FROM Employees ORDER BY Salary DESC LIMIT 3;
+
 -- 102. Display the top 5 lowest-paid employees.
+
+SELECT * FROM Employees ORDER BY Salary ASC LIMIT 5;
+
 -- 103. Display the highest-paid employee.
+
+SELECT * FROM Employees ORDER BY Salary DESC LIMIT 1;
+
 -- 104. Display the second highest-paid employee.
+
+SELECT * FROM Employees ORDER BY Salary DESC LIMIT 1 OFFSET 1;
+
 -- 105. Display the top 2 employees with the highest bonus.
+
+SELECT * FROM Employees ORDER BY Bonus DESC LIMIT 2;
+
 -- 106. Display the youngest three employees.
+
+SELECT * FROM Employees ORDER BY Age ASC LIMIT 3;
+
 -- 107. Display the oldest five employees.
+
+SELECT * FROM Employees ORDER BY Age DESC LIMIT 5;
+
 -- 108. Display the first four employees alphabetically.
+
+SELECT * FROM Employees ORDER BY EmployeeName ASC LIMIT 4;
+
 -- 109. Display the top three employees from the IT department based on salary.
+
+SELECT * FROM Employees WHERE Department = "IT" ORDER BY Salary DESC LIMIT 3;
+
 -- 110. Display the top two highest-paid employees from each department. (Challenge)
+
+SELECT 
+    EmployeeID, 
+    EmployeeName, 
+    Department, 
+    Salary
+FROM (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS salary_rank
+    FROM Employees
+) AS ranked_employees
+WHERE salary_rank <= 2;
+
 
 -- ## Challenge Questions
 
 -- 111. Find the average salary of employees from Ahmedabad.
+
+SELECT AVG(Salary) FROM Employees WHERE City = "Ahmedabad";
+
 -- 112. Find the highest salary in every city.
+
+SELECT City, MAX(Salary) FROM Employees GROUP BY City;
+
 -- 113. Display departments having at least two employees with salary greater than 60,000.
+
+SELECT Department, COUNT(*) FROM Employees WHERE Salary > 60000 GROUP BY Department HAVING COUNT(*) >= 2;
+
 -- 114. Find the department with the highest average salary.
+
+SELECT Department, AVG(Salary) as avg_salary FROM Employees GROUP BY Department ORDER BY avg_salary DESC LIMIT 1;
+
 -- 115. Display cities ordered by total salary paid.
+
+SELECT City, SUM(Salary) as total_salary FROM Employees GROUP BY City ORDER BY total_salary DESC;
+
 -- 116. Find the department that has the maximum number of employees.
+
+SELECT Department, COUNT(*) as employee_count FROM Employees GROUP BY Department ORDER BY employee_count DESC LIMIT 1;
+
 -- 117. Display departments ordered by employee count in descending order.
+
+SELECT Department, COUNT(*) as employee_count FROM Employees GROUP BY Department ORDER BY employee_count DESC;
+
 -- 118. Find the top three departments based on total salary.
+
+SELECT Department, SUM(Salary) as total_salary FROM Employees GROUP BY Department ORDER BY total_salary DESC LIMIT 3;
+
 -- 119. Display the average salary of male and female employees separately and sort by average salary.
+
+SELECT Gender, AVG(Salary) as avg_salary FROM Employees GROUP BY Gender ORDER BY avg_salary;
+
 -- 120. Display department-wise salary statistics sorted by average salary in descending order.
+
+SELECT Department, 
+       MIN(Salary) as min_salary, 
+       MAX(Salary) as max_salary, 
+       AVG(Salary) as avg_salary, 
+       SUM(Salary) as total_salary, 
+       COUNT(*) as employee_count
+FROM Employees
+GROUP BY Department
+ORDER BY avg_salary DESC;
