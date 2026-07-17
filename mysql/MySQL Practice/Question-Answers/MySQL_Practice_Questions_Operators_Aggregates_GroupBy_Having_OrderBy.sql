@@ -1,3 +1,4 @@
+-- Active: 1782301937005@@127.0.0.1@3306@group_aggregate
 -- MySQL Practice Questions
 
 -- Topics Covered
@@ -73,6 +74,7 @@ SELECT * FROM Employees WHERE Department = "HR" OR Department = "Sales";
 -- 14. Display employees who are not in the IT department.
 
 SELECT * FROM Employees WHERE Department <> "IT";
+
 SELECT * FROM Employees WHERE NOT(Department = "IT");
 
 -- 15. Find employees whose age is greater than 30 and experience is greater than 8 years.
@@ -83,14 +85,17 @@ SELECT * FROM Employees WHERE Age > 30 AND Experience > 8;
 
 SELECT * FROM Employees WHERE Department = "Marketing" OR Department = "Finance";
 
--- 17. Display employees who are not from Ahmedabad.
 
-SELECT * FROM Employees WHERE City <> "Ahmedabad";
-SELECT * FROM Employees WHERE NOT(City = "Ahmedabad");
+
+-- 17. Display employees who are not from Ahmedabad.
+SELECT * FROM Employees WHERE City <> "Ahmedabad"; --error
+SELECT * FROM Employees WHERE City != "Ahmedabad"; --error
+
+SELECT * FROM Employees WHERE NOT(City = "Ahmedabad"); --error
 
 -- 18. Find employees whose salary is greater than 60,000 and city is Surat.
 
-SELECT * FROM Employees WHERE Salary > 60000 AND City = "Surat";
+SELECT * FROM Employees WHERE Salary > 60000 AND City = "Surat"; --error
 
 -- 19. Display employees whose department is neither IT nor HR.
 
@@ -118,7 +123,7 @@ SELECT * FROM Employees WHERE Experience BETWEEN 5 AND 10;
 
 -- 24. Display employees whose bonus is between 3,000 and 6,000.
 
-SELECT * FROM Employees WHERE Bonus BETWEEN 3000 AND 6000;
+SELECT * FROM Employees WHERE Bonus BETWEEN 3000 AND 6000; --error
 
 -- 25. Find employees whose salary is not between 60,000 and 80,000.
 
@@ -144,13 +149,13 @@ SELECT * FROM Employees WHERE NOT(Department = "HR" OR Department = "Marketing")
 
 -- 29. Find employees from Ahmedabad or Surat.
 
-SELECT * FROM Employees WHERE City IN("Ahmedabad", "Surat");
-SELECT * FROM Employees WHERE City = "Ahmedabad" OR City = "Surat";
+SELECT * FROM Employees WHERE City IN("Ahmedabad", "Surat"); --error
+SELECT * FROM Employees WHERE City = "Ahmedabad" OR City = "Surat"; --error
 
 -- 30. Display employees whose ManagerID is 101 or 104.
 
-SELECT * FROM Employees WHERE ManagerID IN(101, 104);
-SELECT * FROM Employees WHERE ManagerID = 101 OR ManagerID = 104;
+SELECT * FROM Employees WHERE ManagerID IN(101, 104); --error
+SELECT * FROM Employees WHERE ManagerID = 101 OR ManagerID = 104; --error
 
 
 -- ## Part E – LIKE
@@ -183,7 +188,7 @@ SELECT * FROM Employees WHERE EmployeeName LIKE "P%_____";
 
 -- 37. Display employees whose city starts with 'A'.
 
-SELECT * FROM Employees WHERE City LIKE "A%";
+SELECT * FROM Employees WHERE City LIKE "A%"; --error
 
 -- 38. Display employees whose department ends with 'ing'.
 
@@ -195,30 +200,30 @@ SELECT * FROM Employees WHERE EmployeeName LIKE "%ra%";
 
 -- 40. Display employees whose city contains 'kot'.
 
-SELECT * FROM Employees WHERE City LIKE "%kot%";
+SELECT * FROM Employees WHERE City LIKE "%kot%"; --error
 
 
 -- ## Part F – NULL
 
 -- 41. Display employees whose Bonus is NULL.
 
-SELECT * FROM Employees WHERE Bonus IS NULL;
+SELECT * FROM Employees WHERE Bonus IS NULL; --error 
 
 -- 42. Display employees whose Bonus is NOT NULL.
 
-SELECT * FROM Employees WHERE Bonus IS NOT NULL;
+SELECT * FROM Employees WHERE Bonus IS NOT NULL; --error
 
 -- 43. Count employees whose Bonus is NULL.
 
-SELECT COUNT(*) FROM Employees WHERE Bonus IS NULL;
+SELECT COUNT(*) FROM Employees WHERE Bonus IS NULL; --error
 
 -- 44. Count employees whose Bonus is NOT NULL.
 
-SELECT COUNT(*) FROM Employees WHERE Bonus IS NOT NULL;
+SELECT COUNT(*) FROM Employees WHERE Bonus IS NOT NULL; --error
 
 -- 45. Display employee names having no bonus.
 
-SELECT EmployeeName FROM Employees WHERE Bonus IS NULL;
+SELECT EmployeeName FROM Employees WHERE Bonus IS NULL; --error
 
 
 -- ## Part G – COUNT()
@@ -249,7 +254,7 @@ SELECT COUNT(*) FROM Employees GROUP BY Department;
 
 -- 52. Count employees in each city.
 
-SELECT COUNT(*) FROM Employees GROUP BY City;
+SELECT COUNT(*) FROM Employees GROUP BY City; --error
 
 -- 53. Count employees by gender.
 
@@ -261,7 +266,7 @@ SELECT COUNT(DISTINCT Department) FROM Employees;
 
 -- 55. Count distinct cities.
 
-SELECT COUNT(DISTINCT City) FROM Employees;
+SELECT COUNT(DISTINCT City) FROM Employees; --error
 
 
 -- ## Part H – Aggregate Functions
@@ -284,11 +289,11 @@ SELECT SUM(Salary) FROM Employees;
 
 -- 60. Find the average bonus.
 
-SELECT AVG(Bonus) FROM Employees;
+SELECT AVG(Bonus) FROM Employees; --error
 
 -- 61. Find the highest bonus.
 
-SELECT MAX(Bonus) FROM Employees;
+SELECT MAX(Bonus) FROM Employees; --error
 
 -- 62. Find the minimum age.
 
@@ -300,7 +305,7 @@ SELECT MAX(Experience) FROM Employees;
 
 -- 64. Find the total bonus paid.
 
-SELECT SUM(Bonus) FROM Employees;
+SELECT SUM(Bonus) FROM Employees; --error
 
 -- 65. Find the average experience.
 
@@ -315,7 +320,7 @@ SELECT COUNT(*) FROM Employees GROUP BY Department;
 
 -- 67. Display the number of employees in each city.
 
-SELECT COUNT(*) FROM Employees GROUP BY City;
+SELECT COUNT(*) FROM Employees GROUP BY City; --error
 
 -- 68. Find the minimum salary department-wise.
 
@@ -356,7 +361,7 @@ FROM Employees GROUP BY Department, Gender;
 
 -- 76. Find total bonus department-wise.
 
-SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department;
+SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department; --error
 
 -- 77. Find average experience department-wise.
 
@@ -368,17 +373,16 @@ SELECT Department, MAX(Age) FROM Employees GROUP BY Department;
 
 -- 79. Count employees in each city and department.
 
-SELECT City, Department, COUNT(*) FROM Employees GROUP BY City, Department;
+SELECT City, Department, COUNT(*) FROM Employees GROUP BY City, Department; --error
 
 -- 80. Find total salary city-wise.
 
-SELECT City, SUM(Salary) FROM Employees GROUP BY City;
+SELECT City, SUM(Salary) FROM Employees GROUP BY City; --error
 
 
 -- ## Part J – HAVING
 
 -- 81. Display departments whose average salary is at least 70,000.
-
 SELECT Department, AVG(Salary) FROM Employees GROUP BY Department HAVING AVG(Salary) >= 70000;
 
 -- 82. Display departments having more than 3 employees.
@@ -399,7 +403,8 @@ SELECT Department, MIN(Salary) FROM Employees GROUP BY Department HAVING MIN(Sal
 
 -- 86. Display cities having more than two employees.
 
-SELECT City, COUNT(*) FROM Employees GROUP BY City HAVING COUNT(*) > 2;
+USE operator_db;
+SELECT City, COUNT(*) FROM Employees GROUP BY City HAVING COUNT(*) > 2; --error
 
 -- 87. Display genders having an average salary greater than 60,000.
 
@@ -411,7 +416,7 @@ SELECT Department, COUNT(*) FROM Employees GROUP BY Department HAVING COUNT(*) =
 
 -- 89. Display departments where total bonus is greater than 10,000.
 
-SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department HAVING SUM(Bonus) > 10000;
+SELECT Department, SUM(Bonus) FROM Employees GROUP BY Department HAVING SUM(Bonus) > 10000; --error
 
 -- 90. Display departments whose average experience is greater than 8 years.
 
@@ -455,11 +460,11 @@ SELECT * FROM Employees ORDER BY Experience;
 
 -- 99. Display employees sorted by City and EmployeeName.
 
-SELECT * FROM Employees ORDER BY City, EmployeeName;
+SELECT * FROM Employees ORDER BY City, EmployeeName; --error
 
 -- 100. Display employees sorted by Bonus in descending order.
 
-SELECT * FROM Employees ORDER BY Bonus DESC;
+SELECT * FROM Employees ORDER BY Bonus DESC; --error
 
 
 -- ## Part L – ORDER BY with LIMIT
@@ -482,7 +487,7 @@ SELECT * FROM Employees ORDER BY Salary DESC LIMIT 1 OFFSET 1;
 
 -- 105. Display the top 2 employees with the highest bonus.
 
-SELECT * FROM Employees ORDER BY Bonus DESC LIMIT 2;
+SELECT * FROM Employees ORDER BY Bonus DESC LIMIT 2; --error
 
 -- 106. Display the youngest three employees.
 
@@ -502,6 +507,8 @@ SELECT * FROM Employees WHERE Department = "IT" ORDER BY Salary DESC LIMIT 3;
 
 -- 110. Display the top two highest-paid employees from each department. (Challenge)
 
+
+
 SELECT 
     EmployeeID, 
     EmployeeName, 
@@ -519,15 +526,17 @@ WHERE salary_rank <= 2; -- AI
 
 -- 111. Find the average salary of employees from Ahmedabad.
 
-SELECT AVG(Salary) FROM Employees WHERE City = "Ahmedabad";
+SELECT AVG(Salary), SUM(Salary), COUNT(*) FROM Employees WHERE City = "Ahmedabad"; --error
 
 -- 112. Find the highest salary in every city.
 
-SELECT City, MAX(Salary) FROM Employees GROUP BY City;
+SELECT City, MAX(Salary) FROM Employees GROUP BY City; --error
 
 -- 113. Display departments having at least two employees with salary greater than 60,000.
 
-SELECT Department, COUNT(*) FROM Employees WHERE Salary > 60000 GROUP BY Department HAVING COUNT(*) >= 2;
+SELECT Department, COUNT(*) as x FROM Employees WHERE Salary > 60000 GROUP BY Department HAVING x >= 2 ORDER BY `Department` DESC;
+
+SELECT Department, COUNT(*) as x FROM Employees WHERE Salary > 60000 GROUP BY Department;
 
 -- 114. Find the department with the highest average salary.
 
@@ -535,7 +544,7 @@ SELECT Department, AVG(Salary) as avg_salary FROM Employees GROUP BY Department 
 
 -- 115. Display cities ordered by total salary paid.
 
-SELECT City, SUM(Salary) as total_salary FROM Employees GROUP BY City ORDER BY total_salary DESC;
+SELECT City, SUM(Salary) as total_salary FROM Employees GROUP BY City ORDER BY total_salary DESC; --error
 
 -- 116. Find the department that has the maximum number of employees.
 
