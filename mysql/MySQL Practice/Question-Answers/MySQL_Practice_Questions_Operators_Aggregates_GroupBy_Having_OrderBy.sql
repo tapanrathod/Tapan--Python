@@ -352,8 +352,7 @@ SELECT Department, Gender,
     AVG(Salary) as avg_salary,
     SUM(Salary) as sum_salary,
     COUNT(Salary) as count_salary
-FROM Employees
-GROUP BY Department, Gender;
+FROM Employees GROUP BY Department, Gender;
 
 -- 76. Find total bonus department-wise.
 
