@@ -509,12 +509,11 @@ SELECT
     Department, 
     Salary
 FROM (
-    SELECT 
-        *,
+    SELECT *,
         ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS salary_rank
     FROM Employees
 ) AS ranked_employees
-WHERE salary_rank <= 2;
+WHERE salary_rank <= 2; -- AI
 
 
 -- ## Challenge Questions
