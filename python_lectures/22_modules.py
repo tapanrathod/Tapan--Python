@@ -20,7 +20,7 @@ mdf.addition(23, 45)
 
 # Method - 3
 
-from modules_function import addition, A, a 
+from modules_function import addition, A, a
 
 a = 30
 
@@ -37,7 +37,7 @@ print(x)
 
 # Method - 5 :
 
-import sub_folder.test as st # rename
+import sub_folder.test as st  # rename
 
 # sub_folder.test.A()
 st.A()
