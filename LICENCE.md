@@ -1,4 +1,4 @@
-Co# Proprietary Software License & Terms of Use
+# Proprietary Software License & Terms of Use
 
 **Copyright (c) 2026 Tapan Rathod ("Owner"). All Rights Reserved.**
 
