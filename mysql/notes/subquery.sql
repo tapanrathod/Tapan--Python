@@ -84,7 +84,7 @@ Query :
 Find employees working in IT department
 */
 
- /*
+/*
 SELECT *
 FROM employees
 WHERE dept_id IN (
