@@ -1279,3 +1279,140 @@ WHERE e.department_id IN (
 
 
 SELECT * FROM departments;
+
+
+-- ----------------- SELF JOIN ------------------
+CREATE TABLE Employee_self (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(100),
+    Title VARCHAR(50),
+    ManagerID INT
+);
+
+
+INSERT INTO Employee_self (EmpID, EmpName, Title, ManagerID) VALUES
+(1, 'Rajesh Sharma', 'CEO', NULL),
+
+(2, 'Amit Verma', 'General Manager', 1),
+(3, 'Priya Patel', 'General Manager', 1),
+
+(4, 'Rahul Mehta', 'Project Manager', 2),
+(5, 'Neha Shah', 'Project Manager', 2),
+(6, 'Vikram Singh', 'Project Manager', 3),
+(7, 'Pooja Nair', 'Project Manager', 3),
+
+(8, 'Arjun Reddy', 'Team Lead', 4),
+(9, 'Sneha Iyer', 'Team Lead', 4),
+(10, 'Karan Joshi', 'Team Lead', 5),
+(11, 'Meera Kulkarni', 'Team Lead', 5),
+(12, 'Ankit Gupta', 'Team Lead', 6),
+(13, 'Divya Menon', 'Team Lead', 6),
+(14, 'Rohit Mishra', 'Team Lead', 7),
+(15, 'Kavita Desai', 'Team Lead', 7),
+
+(16, 'Suresh Yadav', 'Software Engineer', 8),
+(17, 'Anjali Rao', 'Software Engineer', 8),
+(18, 'Nitin Choudhary', 'Software Engineer', 9),
+(19, 'Ritika Kapoor', 'Software Engineer', 9),
+(20, 'Harsh Patel', 'Software Engineer', 10),
+(21, 'Simran Kaur', 'Software Engineer', 10),
+(22, 'Manoj Kumar', 'Software Engineer', 11),
+(23, 'Deepika Sinha', 'Software Engineer', 11),
+(24, 'Gaurav Bansal', 'Software Engineer', 12),
+(25, 'Ayesha Khan', 'Software Engineer', 12),
+(26, 'Sandeep Mishra', 'Software Engineer', 13),
+(27, 'Nisha Reddy', 'Software Engineer', 13),
+(28, 'Abhishek Jain', 'Software Engineer', 14),
+(29, 'Shreya Ghosh', 'Software Engineer', 14),
+(30, 'Rakesh Pandey', 'Software Engineer', 15),
+(31, 'Pallavi Joshi', 'Software Engineer', 15),
+
+(32, 'Varun Malhotra', 'QA Engineer', 8),
+(33, 'Bhavna Trivedi', 'QA Engineer', 9),
+(34, 'Hemant Soni', 'QA Engineer', 10),
+(35, 'Isha Arora', 'QA Engineer', 11),
+(36, 'Akash Tiwari', 'QA Engineer', 12),
+(37, 'Komal Agrawal', 'QA Engineer', 13),
+(38, 'Yash Parmar', 'QA Engineer', 14),
+(39, 'Preeti Dubey', 'QA Engineer', 15),
+
+(40, 'Sachin Saxena', 'HR Executive', 2),
+(41, 'Monika Bhatia', 'HR Executive', 2),
+(42, 'Ravi Solanki', 'Finance Executive', 3),
+(43, 'Swati Chawla', 'Finance Executive', 3),
+
+(44, 'Ajay Thakur', 'Business Analyst', 4),
+(45, 'Rekha Pillai', 'Business Analyst', 5),
+(46, 'Tarun Arora', 'Business Analyst', 6),
+(47, 'Sonal Verma', 'Business Analyst', 7),
+
+(48, 'Naveen Shetty', 'Intern', 16),
+(49, 'Muskan Gupta', 'Intern', 20),
+(50, 'Aditya Bhatt', 'Intern', 24);
+
+SELECT * FROM employee_self;
+
+SELECT *
+FROM employee_self as a
+JOIN employee_self as b
+ON a.managerid = b.empid;
+
+SELECT a.`EmpID`, a.`EmpName`, b.`EmpName`, b.`Title` as manage_title
+FROM employee_self as a
+JOIN employee_self as b
+ON a.managerid = b.empid;
+
+
+SELECT a.`EmpID`, a.`EmpName`, b.`EmpName`, b.`ManagerID`,b.`Title` as manage_title
+FROM employee_self as a
+JOIN employee_self as b
+ON a.managerid = b.empid;
+
+SELECT a.`EmpID`, a.`EmpName`, b.`EmpName`, b.`ManagerID`,b.`Title` as manage_title
+FROM employee_self as a
+JOIN employee_self as b
+ON a.managerid = b.empid
+AND a.`ManagerID` > b.`ManagerID`
+ORDER BY b.`Title`
+
+
+
+-- GROUP BY
+SELECT  b.`Title`, COUNT(b.`Title`) as no_employess
+FROM employee_self as a
+JOIN employee_self as b
+ON a.managerid = b.empid
+GROUP BY b.`Title`;
+
+SELECT b.`Title` as manage_title, COUNT(b.`Title`) as no_employess
+FROM employee_self as a
+JOIN employee_self as b
+ON a.managerid = b.empid
+AND a.`ManagerID` > b.`ManagerID`
+GROUP BY b.`Title`
+ORDER BY b.`Title`;
+
+
+SELECT
+    b.EmpName AS Manager_Name,
+    b.Title AS Manager_Title,
+    COUNT(a.EmpID) AS No_Of_Employees
+FROM employee_self AS a
+JOIN employee_self AS b
+    ON a.ManagerID = b.EmpID
+GROUP BY
+    b.EmpID,
+    b.EmpName,
+    b.Title;
+
+
+SELECT
+    a.Title AS Title,
+    COUNT(*) AS No_Employees,
+    b.Title AS `Under`
+FROM employee_self AS a
+JOIN employee_self AS b
+    ON a.ManagerID = b.EmpID
+GROUP BY
+    a.Title,
+    b.Title;
