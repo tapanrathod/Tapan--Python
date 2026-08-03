@@ -3,7 +3,7 @@ USE joins_db;
 
 -- # SQL JOIN Practice Questions
 
--- Tables
+-- Tables : Customers and Orders
 
 CREATE TABLE customers (
     customer_id INT PRIMARY KEY,
@@ -22,7 +22,10 @@ CREATE TABLE orders (
     -- FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
 );
 
--- Tables
+SELECT * FROM customers as c;
+SELECT * FROM orders as o;
+
+-- Tables : Locations, Departments and Employees
 
 CREATE TABLE locations (
     location_id INT PRIMARY KEY,
@@ -47,8 +50,6 @@ CREATE TABLE employees (
     FOREIGN KEY (department_id) REFERENCES departments (department_id)
 );
 
-SELECT * FROM customers as c;
-SELECT * FROM orders as o;
 SELECT * FROM locations as l;
 SELECT * FROM departments as d;
 SELECT * FROM employees as e;
@@ -174,6 +175,7 @@ WHERE
     o.category != 'Mobile';
 
 -- 17. Find customers who bought products costing less than ₹5,000.
+
 SELECT DISTINCT c.customer_name, o.amount
 FROM customers c
 INNER JOIN orders o ON c.customer_id = o.customer_id
@@ -372,7 +374,7 @@ FROM orders o
 RIGHT JOIN orders o ON c.customer_id = o.customer_id
 WHERE c.customer_id IS NULL;
 
-SELECT o.order_id
+SELECT o.order_id -- AI
 FROM orders o
 
 -- 43. Find customers who never purchased Mobile category.
@@ -434,6 +436,7 @@ SELECT c.customer_name, c.city, o.product_name
 FROM customers c
 CROSS JOIN orders o
 WHERE c.city = 'Ahmedabad';
+
 
 -- ## Part 8: GROUP BY with JOIN
 
@@ -764,12 +767,6 @@ JOIN departments d ON e.department_id = d.department_id
 JOIN locations l ON d.location_id = l.location_id
 GROUP BY l.country;
 
-SELECT l.country, MAX(e.salary) AS highest_salary
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
-
 -- 94. Find lowest salary in every location.
 
 SELECT l.city, MIN(e.salary) AS lowest_salary
@@ -814,6 +811,7 @@ HAVING COUNT(e.employee_id) < 5;
 -- Create an `employees(employee_id, employee_name, manager_id)` table.
 
 -- Create the employees table with a self-referencing foreign key for managers
+
 CREATE TABLE employees (
     employee_id INT PRIMARY KEY,
     employee_name VARCHAR(100) NOT NULL,
