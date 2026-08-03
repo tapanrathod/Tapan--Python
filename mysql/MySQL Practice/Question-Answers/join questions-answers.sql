@@ -810,8 +810,6 @@ HAVING COUNT(e.employee_id) < 5;
 
 -- Create an `employees(employee_id, employee_name, manager_id)` table.
 
--- Create the employees table with a self-referencing foreign key for managers
-
 CREATE TABLE employees (
     employee_id INT PRIMARY KEY,
     employee_name VARCHAR(100) NOT NULL,
