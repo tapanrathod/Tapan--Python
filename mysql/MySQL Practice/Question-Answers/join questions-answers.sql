@@ -161,7 +161,7 @@ WHERE
 
 -- 15. Find all customers living in Mumbai or Delhi who placed orders. -- error
 
-SELECT c.customer_name, c.city, o.product
+SELECT c.customer_name, c.city, o.product_name
 FROM customers as c
     INNER JOIN orders as o ON o.customer_id = c.customer_id
 WHERE
@@ -324,14 +324,20 @@ LEFT JOIN customers c ON o.customer_id = c.customer_id;
 
 SELECT c.customer_name, o.order_id
 FROM customers c
-FULL JOIN orders o ON c.customer_id = o.customer_id;
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+
+UNION
+
+SELECT c.customer_name, o.order_id
+FROM customers c
+RIGHT JOIN orders o ON c.customer_id = o.customer_id;
 
 -- 37. Display unmatched customers and unmatched orders together. -- error
 
 SELECT c.customer_name, o.order_id
 FROM customers c
-FULL JOIN orders o ON c.customer_id = o.customer_id
-WHERE c.customer_id IS NULL OR o.order_id IS NULL;
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE  o.order_id IS NULL;
 
 -- 38. Count unmatched records. -- error
 
@@ -609,11 +615,11 @@ GROUP BY d.department_id, d.department_name;
 
 -- 74. Find average salary by country. -- error
 
-SELECT c.country, AVG(e.salary) AS avg_salary
-FROM countries c
-JOIN locations l ON c.country_id = l.country_id
-JOIN departments d ON l.location_id = d.location_id
-GROUP BY c.country_id, c.country;
+SELECT AVG(e.salary) AS avg_salary, SUM(e.salary) AS sum_salary, l.country
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+GROUP BY l.country;
 
 -- 75. Display highest salary employee from each department. -- AI
 
@@ -654,17 +660,25 @@ HAVING SUM(e.salary) > 200000;
 
 -- 79. Display employees working in India. -- error
 
-SELECT e.first_name, e.last_name
+SELECT e.first_name, e.last_name, l.country
 FROM employees e
-JOIN employees e ON d.department_id = e.department_id
+JOIN departments d ON d.department_id = e.department_id
 JOIN locations l ON d.location_id = l.location_id
 WHERE l.country = 'India';
 
+
+SELECT l.country, COUNT(l.country)
+FROM employees e
+JOIN departments d ON d.department_id = e.department_id
+JOIN locations l ON d.location_id = l.location_id
+WHERE l.country IN ("India", "UK")
+GROUP BY l.country;
+
 -- 80. Display employees working in London. -- error
 
-SELECT e.first_name, e.last_name
+SELECT e.first_name, e.last_name,l.country, l.city
 FROM employees e
-JOIN employees e ON d.department_id = e.department_id
+JOIN departments d ON d.department_id = e.department_id
 JOIN locations l ON d.location_id = l.location_id
 WHERE l.city = 'London';
 
@@ -713,13 +727,13 @@ JOIN departments d ON e.department_id = d.department_id
 JOIN locations l ON d.location_id = l.location_id
 WHERE l.country = 'Australia';
 
--- 87. Display employees ordered by country and salary descending. -- error
+-- 87. Display employees ordered by country and salary descending.
 
 SELECT e.first_name, e.last_name, l.country, e.salary
-FROM employees
-JOIN departments ON employees.department_id = departments.department_id
-JOIN locations ON departments.location_id = locations.location_id
-ORDER BY locations.country, employees.salary DESC;
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+ORDER BY l.country DESC, e.salary DESC;
 
 -- 88. Find departments where average salary exceeds ₹47,000.
 
