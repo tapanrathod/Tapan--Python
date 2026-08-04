@@ -54,6 +54,17 @@ SELECT * FROM locations as l;
 SELECT * FROM departments as d;
 SELECT * FROM employees as e;
 
+-- Table : Employee Self 
+
+CREATE TABLE Employee_self (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(100),
+    Title VARCHAR(50),
+    ManagerID INT
+);
+
+SELECT * FROM employee_self;
+
 
 -- ## Part 1: INNER JOIN (Basic)
 
@@ -826,19 +837,79 @@ HAVING COUNT(e.employee_id) < 5;
 
 -- 101. Display employee with manager name.
 
-SELECT e.first_name AS employee_name, m.first_name AS manager_name
-FROM employees e
-JOIN employees m ON e.manager_id = m.employee_id;
+SELECT e.EmpName AS Employee_Name, e.Title, m.EmpName AS Manager_Name
+FROM Employee_self e
+LEFT JOIN Employee_self m ON e.ManagerID = m.EmpID;
 
 -- 102. Find employees without managers.
+
+SELECT e.EmpName AS Employee_Name, e.Title
+FROM Employee_self e
+LEFT JOIN Employee_self m ON e.ManagerID = m.EmpID
+WHERE m.EmpID IS NULL;
+
 -- 103. Display manager with total employees reporting.
+
+SELECT m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Total_Employees
+FROM Employee_self e
+RIGHT JOIN Employee_self m ON e.ManagerID = m.EmpID
+GROUP BY m.EmpID, m.EmpName;
+
 -- 104. Find manager having maximum subordinates.
--- 105. Display employees reporting to Emp1.
+
+SELECT m.EmpID AS Manager_ID, m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Subordinates_Count
+FROM Employee_self m
+JOIN Employee_self e ON m.EmpID = e.ManagerID
+GROUP BY m.EmpID, m.EmpName
+ORDER BY Subordinates_Count DESC
+LIMIT 1;
+
+-- 105. Display employees reporting to Emp1. -- AI
+
+SELECT e.EmpName AS Employee_Name
+FROM Employee_self e
+WHERE e.ManagerID = (
+    SELECT EmpID
+    FROM Employee_self
+    WHERE EmpName = 'Emp1'
+);
+
 -- 106. Display employees reporting indirectly to a manager.
+
+SELECT e.EmpName AS Employee_Name
+FROM Employee_self e
+JOIN Employee_self m ON e.ManagerID = m.EmpID
+WHERE m.EmpName = 'Manager1';
+
 -- 107. Display employee-manager pairs ordered alphabetically.
+
+SELECT e.EmpName AS Employee_Name, m.EmpName AS Manager_Name
+FROM Employee_self e
+JOIN Employee_self m ON e.ManagerID = m.EmpID
+ORDER BY e.EmpName, m.EmpName;
+
 -- 108. Count employees under each manager.
+
+SELECT m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Employee_Count
+FROM Employee_self e
+RIGHT JOIN Employee_self m ON e.ManagerID = m.EmpID
+GROUP BY m.EmpID, m.EmpName;
+
 -- 109. Find managers with more than 3 employees.
+
+SELECT m.EmpID AS Manager_ID, m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Employee_Count
+FROM Employee_self m
+JOIN Employee_self e ON m.EmpID = e.ManagerID
+GROUP BY m.EmpID, m.EmpName
+HAVING COUNT(e.EmpID) > 3;
+
 -- 110. Display top-level managers.
+
+SELECT m.EmpID AS Manager_ID, m.EmpName AS Manager_Name
+FROM Employee_self m
+LEFT JOIN Employee_self e ON m.EmpID = e.ManagerID
+WHERE e.EmpID IS NULL;
+
 
 -- ## Part 14: Projects Table
 

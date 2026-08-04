@@ -4,6 +4,7 @@ select * from orders;
 select * from locations;
 select * from departments;
 select * from employees;
+SELECT * FROM employee_self; -- Manager ID
 
 
 SELECT e1.first_name,
