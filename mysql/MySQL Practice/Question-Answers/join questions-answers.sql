@@ -824,21 +824,12 @@ HAVING COUNT(e.employee_id) < 5;
 
 -- Create an `employees(employee_id, employee_name, manager_id)` table.
 
-CREATE TABLE employees (
-    employee_id INT PRIMARY KEY,
-    employee_name VARCHAR(100) NOT NULL,
-    manager_id INT,
-    FOREIGN KEY (manager_id) REFERENCES employees(employee_id)
-);
-
-INSERT INTO employees (employee_id, employee_name, manager_id) VALUES
-(1, 'Emp1', 1),
-(2, 'Emp2', 2),
-(3, 'Emp3', 3),
-(4, 'Emp4', 4),
-(5, 'Emp5', 5);
-
 -- 101. Display employee with manager name.
+
+SELECT e.first_name AS employee_name, m.first_name AS manager_name
+FROM employees e
+JOIN employees m ON e.manager_id = m.employee_id;
+
 -- 102. Find employees without managers.
 -- 103. Display manager with total employees reporting.
 -- 104. Find manager having maximum subordinates.
