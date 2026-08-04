@@ -65,6 +65,49 @@ CREATE TABLE Employee_self (
 
 SELECT * FROM employee_self;
 
+-- Table : Projects
+
+CREATE TABLE projects (
+    project_id INT PRIMARY KEY,
+    project_name VARCHAR(100) NOT NULL,
+    department_id INT NULL,
+    budget DECIMAL(12, 2),
+    FOREIGN KEY (department_id) REFERENCES departments (department_id) ON DELETE SET NULL
+);
+
+INSERT INTO projects (project_id, project_name, department_id, budget) VALUES
+(1, 'HR Automation System', 101, 150000.00),
+(2, 'Q3 Financial Audit', 102, 85000.00),
+(3, 'Cloud Infrastructure Migration', 103, 500000.00),
+(4, 'Global Rebranding Campaign', 104, 320000.00),
+(5, 'Enterprise CRM Expansion', 105, 250000.00),
+(6, 'Supply Chain Optimization', 106, 180000.00),
+(7, 'Customer Success Portal', 107, 95000.00),
+(8, 'Next-Gen Product R&D', 108, 750000.00),
+(9, 'GDPR Compliance Overhaul', 109, 110000.00),
+(10, 'Unassigned Innovation Lab', NULL, 200000.00),
+(11, 'HR Talent Analytics', 101, 120000.00),
+(12, 'Automated Payroll Upgrade', 102, 95000.00),
+(13, 'Zero-Trust Cybersecurity Framework', 103, 620000.00),
+(14, 'Social Media Expansion', 104, 180000.00),
+(15, 'B2B Sales Pipeline Optimization', 105, 230000.00),
+(16, 'Logistics Tracking Portal', 106, 310000.00),
+(17, 'AI Chatbot Support Integration', 107, 140000.00),
+(18, 'Quantum Computing Feasibility Study', 108, 890000.00),
+(19, 'Intellectual Property Audit', 109, 105000.00),
+(20, 'Headquarters Office Remodel', 110, 450000.00),
+(21, 'APAC Regional Recruitment', 101, 85000.00),
+(22, 'Global Tax Restructuring', 102, 275000.00),
+(23, 'Data Warehouse Modernization', 103, 410000.00),
+(24, 'Influencer Marketing Push', 104, 130000.00),
+(25, 'Key Account Management Portal', 105, 195000.00),
+(26, 'Warehouse Automation Expansion', 106, 520000.00),
+(27, 'Omnichannel Helpdesk Rollout', 107, 160000.00),
+(28, 'Green Tech Sustainability Initiative', 108, 670000.00),
+(29, 'Contract Lifecycle Management', 109, 115000.00),
+(30, 'Unassigned Strategic Reserve', NULL, 1000000.00);
+
+SELECT * FROM projects;
 
 -- ## Part 1: INNER JOIN (Basic)
 
@@ -916,15 +959,80 @@ WHERE e.EmpID IS NULL;
 -- Create a `projects(project_id, project_name, department_id, budget)` table.
 
 -- 111. Display project name with department.
+
+SELECT p.project_name, d.department_name
+FROM projects p
+JOIN departments d ON p.department_id = d.department_id;
+
 -- 112. Display project city.
+
+SELECT p.project_name, l.city
+FROM projects p
+JOIN departments d ON p.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id;
+
 -- 113. Display total project budget by country.
+
+SELECT l.country, SUM(p.budget) AS total_budget
+FROM projects p
+JOIN departments d ON p.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+GROUP BY l.country;
+
 -- 114. Find departments having no projects.
+
+SELECT d.department_name
+FROM departments d
+LEFT JOIN projects p ON d.department_id = p.department_id
+WHERE p.project_id IS NULL;
+
 -- 115. Find projects without departments.
+
+SELECT p.project_name
+FROM projects p
+LEFT JOIN departments d ON p.department_id = d.department_id
+WHERE d.department_id IS NULL;
+
 -- 116. Display average project budget by location.
+
+SELECT l.city, AVG(p.budget) AS avg_project_budget
+FROM projects p
+JOIN departments d ON p.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+GROUP BY l.city;
+
 -- 117. Find department having highest project budget.
+
+SELECT d.department_name, SUM(p.budget) AS total_budget
+FROM departments d
+JOIN projects p ON d.department_id = p.department_id
+GROUP BY d.department_id, d.department_name
+ORDER BY total_budget DESC
+LIMIT 1;
+
 -- 118. Display projects located in India.
+
+SELECT p.project_name, p.budget, l.city, l.country
+FROM projects p
+JOIN departments d ON p.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+WHERE l.country = 'India';
+
 -- 119. Display all departments with project count.
+
+SELECT d.department_name, COUNT(p.project_id) AS project_count
+FROM departments d
+LEFT JOIN projects p ON d.department_id = p.department_id
+GROUP BY d.department_id, d.department_name;
+
 -- 120. Find departments handling more than one project.
+
+SELECT d.department_name, COUNT(p.project_id) AS project_count
+FROM departments d
+JOIN projects p ON d.department_id = p.department_id
+GROUP BY d.department_id, d.department_name
+HAVING COUNT(p.project_id) > 1;
+
 
 -- ## Part 15: Many-to-Many JOIN
 
