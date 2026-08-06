@@ -24,6 +24,7 @@ CREATE TABLE orders (
 );
 
 SELECT * FROM customers as c;
+
 SELECT * FROM orders as o;
 
 -- Tables : Locations, Departments and Employees
@@ -52,10 +53,12 @@ CREATE TABLE employees (
 );
 
 SELECT * FROM locations as l;
+
 SELECT * FROM departments as d;
+
 SELECT * FROM employees as e;
 
--- Table : Employee Self 
+-- Table : Employee Self
 
 CREATE TABLE Employee_self (
     EmpID INT PRIMARY KEY,
@@ -76,37 +79,193 @@ CREATE TABLE projects (
     FOREIGN KEY (department_id) REFERENCES departments (department_id) ON DELETE SET NULL
 );
 
-INSERT INTO projects (project_id, project_name, department_id, budget) VALUES
-(1, 'HR Automation System', 101, 150000.00),
-(2, 'Q3 Financial Audit', 102, 85000.00),
-(3, 'Cloud Infrastructure Migration', 103, 500000.00),
-(4, 'Global Rebranding Campaign', 104, 320000.00),
-(5, 'Enterprise CRM Expansion', 105, 250000.00),
-(6, 'Supply Chain Optimization', 106, 180000.00),
-(7, 'Customer Success Portal', 107, 95000.00),
-(8, 'Next-Gen Product R&D', 108, 750000.00),
-(9, 'GDPR Compliance Overhaul', 109, 110000.00),
-(10, 'Unassigned Innovation Lab', NULL, 200000.00),
-(11, 'HR Talent Analytics', 101, 120000.00),
-(12, 'Automated Payroll Upgrade', 102, 95000.00),
-(13, 'Zero-Trust Cybersecurity Framework', 103, 620000.00),
-(14, 'Social Media Expansion', 104, 180000.00),
-(15, 'B2B Sales Pipeline Optimization', 105, 230000.00),
-(16, 'Logistics Tracking Portal', 106, 310000.00),
-(17, 'AI Chatbot Support Integration', 107, 140000.00),
-(18, 'Quantum Computing Feasibility Study', 108, 890000.00),
-(19, 'Intellectual Property Audit', 109, 105000.00),
-(20, 'Headquarters Office Remodel', 110, 450000.00),
-(21, 'APAC Regional Recruitment', 101, 85000.00),
-(22, 'Global Tax Restructuring', 102, 275000.00),
-(23, 'Data Warehouse Modernization', 103, 410000.00),
-(24, 'Influencer Marketing Push', 104, 130000.00),
-(25, 'Key Account Management Portal', 105, 195000.00),
-(26, 'Warehouse Automation Expansion', 106, 520000.00),
-(27, 'Omnichannel Helpdesk Rollout', 107, 160000.00),
-(28, 'Green Tech Sustainability Initiative', 108, 670000.00),
-(29, 'Contract Lifecycle Management', 109, 115000.00),
-(30, 'Unassigned Strategic Reserve', NULL, 1000000.00);
+INSERT INTO
+    projects (
+        project_id,
+        project_name,
+        department_id,
+        budget
+    )
+VALUES (
+        1,
+        'HR Automation System',
+        101,
+        150000.00
+    ),
+    (
+        2,
+        'Q3 Financial Audit',
+        102,
+        85000.00
+    ),
+    (
+        3,
+        'Cloud Infrastructure Migration',
+        103,
+        500000.00
+    ),
+    (
+        4,
+        'Global Rebranding Campaign',
+        104,
+        320000.00
+    ),
+    (
+        5,
+        'Enterprise CRM Expansion',
+        105,
+        250000.00
+    ),
+    (
+        6,
+        'Supply Chain Optimization',
+        106,
+        180000.00
+    ),
+    (
+        7,
+        'Customer Success Portal',
+        107,
+        95000.00
+    ),
+    (
+        8,
+        'Next-Gen Product R&D',
+        108,
+        750000.00
+    ),
+    (
+        9,
+        'GDPR Compliance Overhaul',
+        109,
+        110000.00
+    ),
+    (
+        10,
+        'Unassigned Innovation Lab',
+        NULL,
+        200000.00
+    ),
+    (
+        11,
+        'HR Talent Analytics',
+        101,
+        120000.00
+    ),
+    (
+        12,
+        'Automated Payroll Upgrade',
+        102,
+        95000.00
+    ),
+    (
+        13,
+        'Zero-Trust Cybersecurity Framework',
+        103,
+        620000.00
+    ),
+    (
+        14,
+        'Social Media Expansion',
+        104,
+        180000.00
+    ),
+    (
+        15,
+        'B2B Sales Pipeline Optimization',
+        105,
+        230000.00
+    ),
+    (
+        16,
+        'Logistics Tracking Portal',
+        106,
+        310000.00
+    ),
+    (
+        17,
+        'AI Chatbot Support Integration',
+        107,
+        140000.00
+    ),
+    (
+        18,
+        'Quantum Computing Feasibility Study',
+        108,
+        890000.00
+    ),
+    (
+        19,
+        'Intellectual Property Audit',
+        109,
+        105000.00
+    ),
+    (
+        20,
+        'Headquarters Office Remodel',
+        110,
+        450000.00
+    ),
+    (
+        21,
+        'APAC Regional Recruitment',
+        101,
+        85000.00
+    ),
+    (
+        22,
+        'Global Tax Restructuring',
+        102,
+        275000.00
+    ),
+    (
+        23,
+        'Data Warehouse Modernization',
+        103,
+        410000.00
+    ),
+    (
+        24,
+        'Influencer Marketing Push',
+        104,
+        130000.00
+    ),
+    (
+        25,
+        'Key Account Management Portal',
+        105,
+        195000.00
+    ),
+    (
+        26,
+        'Warehouse Automation Expansion',
+        106,
+        520000.00
+    ),
+    (
+        27,
+        'Omnichannel Helpdesk Rollout',
+        107,
+        160000.00
+    ),
+    (
+        28,
+        'Green Tech Sustainability Initiative',
+        108,
+        670000.00
+    ),
+    (
+        29,
+        'Contract Lifecycle Management',
+        109,
+        115000.00
+    ),
+    (
+        30,
+        'Unassigned Strategic Reserve',
+        NULL,
+        1000000.00
+    );
 
 SELECT * FROM projects;
 
@@ -116,8 +275,8 @@ SELECT * FROM projects;
 
 SELECT o.product_name, c.customer_name
 FROM customers as c
-JOIN orders as o ON o.customer_id = c.customer_id
--- INNER JOIN customers as c ON o.customer_id = c.customer_id;
+    JOIN orders as o ON o.customer_id = c.customer_id
+    -- INNER JOIN customers as c ON o.customer_id = c.customer_id;
 
 -- 2. Display customer name, city, product name, category, and amount.
 SELECT c.customer_name, c.city, o.product_name, o.category, o.amount
@@ -126,7 +285,7 @@ FROM customers as c
 
 -- 3. Show only the customer name and order date.
 SELECT c.customer_name, o.order_date
-FROM customers as c 
+FROM customers as c
     INNER JOIN orders as o ON o.customer_id = c.customer_id;
 
 -- 4. Display all Mobile category orders with customer names.
@@ -181,7 +340,6 @@ FROM orders as o
     INNER JOIN customers as c ON o.customer_id = c.customer_id
 ORDER BY o.amount DESC;
 
-
 -- ## Part 2: INNER JOIN + Filtering
 
 -- 11. Display all customers whose order amount is between ₹10,000 and ₹70,000.
@@ -231,17 +389,21 @@ WHERE
 
 -- 17. Find customers who bought products costing less than ₹5,000.
 
-SELECT DISTINCT c.customer_name, o.amount
+SELECT DISTINCT
+    c.customer_name,
+    o.amount
 FROM customers c
-INNER JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.amount < 5000;
+    INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.amount < 5000;
 
 -- 18. Display customer name and product name ordered in January 2025.
 
 SELECT c.customer_name, o.product_name, o.order_date
 FROM customers c
-INNER JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.order_date BETWEEN '2025-01-01' AND '2025-01-31';
+    INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.order_date BETWEEN '2025-01-01' AND '2025-01-31';
 
 -- 19. Display orders sorted first by category and then by amount descending.
 
@@ -257,7 +419,6 @@ FROM customers as c
 WHERE
     o.product_name LIKE 'S%';
 
-
 -- ## Part 3: LEFT JOIN
 
 -- 21. Display all customers whether they placed orders or not.
@@ -270,72 +431,88 @@ FROM customers as c
 
 SELECT c.customer_name, o.order_id
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id;
 
 -- 23. Find customers who have never placed an order.
 
 SELECT c.customer_name
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.order_id IS NULL;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.order_id IS NULL;
 
 -- 24. Count total orders placed by every customer.
 
 SELECT c.customer_name, COUNT(o.order_id) AS total_orders
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_name;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_name;
 
 -- 25. Display customer names and total purchase amount.
 
 SELECT c.customer_name, COALESCE(SUM(o.amount), 0) AS total_purchase
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name;
 
 -- 26. Display customers whose total purchase amount exceeds ₹50,000.
 
 SELECT c.customer_name, SUM(o.amount) AS total_purchase
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING SUM(o.amount) > 50000;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    SUM(o.amount) > 50000;
 
 -- 27. Find customers with exactly one order.
 
 SELECT c.customer_name, COUNT(o.order_id) AS order_count
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING COUNT(o.order_id) = 1;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    COUNT(o.order_id) = 1;
 
 -- 28. Find customers with more than one order.
 
 SELECT c.customer_name, COUNT(o.order_id) AS order_count
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING COUNT(o.order_id) > 1;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    COUNT(o.order_id) > 1;
 
 -- 29. Display customer names having zero orders.
 
 SELECT c.customer_name
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING COUNT(o.order_id) = 0;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    COUNT(o.order_id) = 0;
 
 -- 30. Display every customer with their latest order. -- AI
 
 SELECT c.customer_name, o.order_id, o.product_name, o.order_date
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id 
-  AND o.order_date = (
-      SELECT MAX(order_date) 
-      FROM orders 
-      WHERE customer_id = c.customer_id
-  );
-
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+    AND o.order_date = (
+        SELECT MAX(order_date)
+        FROM orders
+        WHERE
+            customer_id = c.customer_id
+    );
 
 -- ## Part 4: RIGHT JOIN
 
@@ -349,29 +526,31 @@ FROM orders as o
 
 SELECT o.order_id, c.customer_name AS orphan_orders
 FROM customers c
-RIGHT JOIN orders o ON c.customer_id = o.customer_id
-WHERE c.customer_id IS NULL;
+    RIGHT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    c.customer_id IS NULL;
 
 -- 33. Count orphan orders.
 
 SELECT COUNT(*) AS orphan_orders
 FROM orders o
-LEFT JOIN customers c ON o.customer_id = c.customer_id
-WHERE c.customer_id IS NULL;
+    LEFT JOIN customers c ON o.customer_id = c.customer_id
+WHERE
+    c.customer_id IS NULL;
 
 -- 34. Display only unmatched orders.
 
 SELECT o.order_id, c.customer_name
 FROM customers c
-RIGHT JOIN orders o ON c.customer_id = o.customer_id
-WHERE c.customer_id IS NULL;
+    RIGHT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    c.customer_id IS NULL;
 
 -- 35. Display all orders with customer names if available.
 
 SELECT o.order_id, c.customer_name
 FROM orders o
-LEFT JOIN customers c ON o.customer_id = c.customer_id;
-
+    LEFT JOIN customers c ON o.customer_id = c.customer_id;
 
 -- ## Part 5: FULL JOIN (Using UNION)
 
@@ -379,40 +558,40 @@ LEFT JOIN customers c ON o.customer_id = c.customer_id;
 
 SELECT c.customer_name, o.order_id
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
 UNION
-
 SELECT c.customer_name, o.order_id
 FROM customers c
-RIGHT JOIN orders o ON c.customer_id = o.customer_id;
+    RIGHT JOIN orders o ON c.customer_id = o.customer_id;
 
 -- 37. Display unmatched customers and unmatched orders together. -- error
 
 SELECT c.customer_name, o.order_id
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE  o.order_id IS NULL;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.order_id IS NULL;
 
 -- 38. Count unmatched records. -- error
 
 SELECT c.customer_name, o.order_id
-FROM customers c
-FULL JOIN orders o ON c.customer_id = o.customer_id
-WHERE c.customer_id IS NULL OR o.order_id IS NULL;
+FROM customers c FULL
+    JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    c.customer_id IS NULL
+    OR o.order_id IS NULL;
 
 -- 39. Display all matching and non-matching records together. -- error
 
 SELECT c.customer_name, o.order_id
-FROM customers c
-FULL JOIN orders o ON c.customer_id = o.customer_id;
+FROM customers c FULL
+    JOIN orders o ON c.customer_id = o.customer_id;
 
 -- 40. Show which rows came from LEFT side and which came from RIGHT side.  -- error
 
 SELECT c.customer_name, o.order_id
-FROM customers c
-FULL JOIN orders o ON c.customer_id = o.customer_id;
-
+FROM customers c FULL
+    JOIN orders o ON c.customer_id = o.customer_id;
 
 -- ## Part 6: ANTI JOIN
 
@@ -420,20 +599,23 @@ FULL JOIN orders o ON c.customer_id = o.customer_id;
 
 SELECT o.order_id, c.customer_name
 FROM orders o
-RIGHT JOIN customers c ON o.customer_id = c.customer_id
-WHERE o.order_id IS NULL;
+    RIGHT JOIN customers c ON o.customer_id = c.customer_id
+WHERE
+    o.order_id IS NULL;
 
 SELECT c.customer_name
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.order_id IS NULL;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.order_id IS NULL;
 
 -- 42. Find orders without valid customers.
 
 SELECT o.order_id, c.customer_name -- error
 FROM orders o
-RIGHT JOIN orders o ON c.customer_id = o.customer_id
-WHERE c.customer_id IS NULL;
+    RIGHT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    c.customer_id IS NULL;
 
 SELECT o.order_id -- AI
 FROM orders o
@@ -442,33 +624,38 @@ FROM orders o
 
 SELECT c.customer_name, o.category
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.category != 'Mobile' OR o.category IS NULL;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.category != 'Mobile'
+    OR o.category IS NULL;
 
 -- 44. Find customers who never purchased products costing above ₹20,000.
 
 SELECT c.customer_name, o.amount
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.amount <= 20000 OR o.amount IS NULL;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.amount <= 20000
+    OR o.amount IS NULL;
 
 -- 45. Find cities having no customer orders.
 
 SELECT c.city, o.order_id
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.order_id IS NULL;
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.order_id IS NULL;
 
-SELECT c.city
-FROM customers c
+SELECT c.city FROM customers c
 
 -- 46. Find customers who never bought Electronics.
 
 SELECT c.customer_name, o.category
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.category != 'Electronics' OR o.category IS NULL;
-
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.category != 'Electronics'
+    OR o.category IS NULL;
 
 -- ## Part 7: CROSS JOIN
 
@@ -476,28 +663,26 @@ WHERE o.category != 'Electronics' OR o.category IS NULL;
 
 SELECT c.customer_name, o.product_name
 FROM customers c
-CROSS JOIN orders o;
+    CROSS JOIN orders o;
 
--- 48. Count total rows produced by CROSS JOIN. 
+-- 48. Count total rows produced by CROSS JOIN.
 
-SELECT COUNT(*) AS total_rows
-FROM customers c
-CROSS JOIN orders o;
+SELECT COUNT(*) AS total_rows FROM customers c CROSS JOIN orders o;
 
 -- 49. Show only the first 25 rows of CROSS JOIN.
 
 SELECT c.customer_name, o.product_name
 FROM customers c
-CROSS JOIN orders o
+    CROSS JOIN orders o
 LIMIT 25;
 
 -- 50. Display only combinations where customer city is Ahmedabad.
 
 SELECT c.customer_name, c.city, o.product_name
 FROM customers c
-CROSS JOIN orders o
-WHERE c.city = 'Ahmedabad';
-
+    CROSS JOIN orders o
+WHERE
+    c.city = 'Ahmedabad';
 
 -- ## Part 8: GROUP BY with JOIN
 
@@ -505,70 +690,82 @@ WHERE c.city = 'Ahmedabad';
 
 SELECT c.city, COUNT(o.order_id) AS order_count
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.city;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.city;
 
 -- 52. Find average purchase amount by city.
 
 SELECT c.city, AVG(o.amount) AS average_purchase
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.city;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.city;
 
 -- 53. Find maximum order amount for each customer.
 
 SELECT c.customer_name, MAX(o.amount) AS max_order_amount
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name;
 
 -- 54. Find minimum purchase amount by category.
 
 SELECT o.category, MIN(o.amount) AS min_purchase_amount
 FROM orders o
-GROUP BY o.category;
+GROUP BY
+    o.category;
 
 -- 55. Find total sales per category.
 
 SELECT o.category, SUM(o.amount) AS total_sales
 FROM orders o
-GROUP BY o.category;
+GROUP BY
+    o.category;
 
 -- 56. Find total customers per city who placed orders.
 
 SELECT c.city, COUNT(DISTINCT o.customer_id) AS total_customers
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.city;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.city;
 
 -- 57. Display cities whose sales exceed ₹1,00,000.
 
 SELECT c.city, SUM(o.amount) AS total_sales
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.city
-HAVING SUM(o.amount) > 100000;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.city
+HAVING
+    SUM(o.amount) > 100000;
 
 -- 58. Find categories having more than one order.
 
 SELECT o.category, COUNT(o.order_id) AS order_count
 FROM orders o
-GROUP BY o.category
-HAVING COUNT(o.order_id) > 1;
+GROUP BY
+    o.category
+HAVING
+    COUNT(o.order_id) > 1;
 
 -- 59. Display total sales ordered descending.
 
 SELECT o.product_name, SUM(o.amount) AS total_sales
 FROM orders o
-GROUP BY o.product_name
+GROUP BY
+    o.product_name
 ORDER BY total_sales DESC;
 
 -- 60. Display average amount of each category.
 
 SELECT o.category, AVG(o.amount) AS average_amount
 FROM orders o
-GROUP BY o.category;
-
+GROUP BY
+    o.category;
 
 -- ## Part 9: HAVING + JOIN
 
@@ -576,40 +773,51 @@ GROUP BY o.category;
 
 SELECT c.customer_name, SUM(o.amount) AS total_spending
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING SUM(o.amount) > 50000;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    SUM(o.amount) > 50000;
 
 -- 62. Display categories having average amount greater than ₹20,000.
 
 SELECT category, AVG(amount) AS avg_amount
 FROM orders
-GROUP BY category
-HAVING AVG(amount) > 20000;
+GROUP BY
+    category
+HAVING
+    AVG(amount) > 20000;
 
 -- 63. Display cities having more than one customer with orders.
 
 SELECT c.city, COUNT(DISTINCT o.customer_id) AS customer_count
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.city
-HAVING COUNT(DISTINCT c.customer_id) > 1;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.city
+HAVING
+    COUNT(DISTINCT c.customer_id) > 1;
 
 -- 64. Display customers with at least two orders.
 
 SELECT c.customer_name, COUNT(o.order_id) AS order_count
 FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_name
-HAVING COUNT(o.order_id) >= 2;
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    COUNT(o.order_id) >= 2;
 
 -- 65. Display categories whose total sales exceed ₹60,000.
 
 SELECT category, SUM(amount) AS total_sales
 FROM orders
-GROUP BY category
-HAVING SUM(amount) > 60000;
-
+GROUP BY
+    category
+HAVING
+    SUM(amount) > 60000;
 
 -- ## Part 10: Three Table JOIN
 
@@ -617,47 +825,54 @@ HAVING SUM(amount) > 60000;
 
 SELECT e.first_name, e.last_name, d.department_name
 FROM employees e
-JOIN departments d ON e.department_id = d.department_id;
+    JOIN departments d ON e.department_id = d.department_id;
 
 -- 67. Display employee name with department and city.
 
 SELECT e.first_name, e.last_name, d.department_name, l.city
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id;
 
 -- 68. Display employee name, department, city and country.
 
 SELECT e.first_name, e.last_name, d.department_name, l.city, c.country
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id;
 
 -- 69. Display all employees even if department is NULL.
 
 SELECT e.first_name, e.last_name, d.department_name
 FROM employees e
-LEFT JOIN departments d ON e.department_id = d.department_id;
+    LEFT JOIN departments d ON e.department_id = d.department_id;
 
 -- 70. Find employees without departments.
 
 SELECT e.first_name, e.last_name
 FROM employees e
-WHERE e.department_id IS NULL;
+WHERE
+    e.department_id IS NULL;
 
 -- 71. Count employees in every department.
 
 SELECT d.department_name, COUNT(e.employee_id) AS employee_count
 FROM departments d
-LEFT JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name;
+    LEFT JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name;
 
 -- 72. Find department having maximum employees.
 
 SELECT d.department_name, COUNT(e.employee_id) AS emp_count
 FROM departments d
-JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
 ORDER BY emp_count DESC
 LIMIT 1;
 
@@ -665,78 +880,95 @@ LIMIT 1;
 
 SELECT d.department_name, AVG(e.salary) AS avg_salary
 FROM departments d
-JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name;
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name;
 
 -- 74. Find average salary by country. -- error
 
 SELECT AVG(e.salary) AS avg_salary, SUM(e.salary) AS sum_salary, l.country
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.country;
 
 -- 75. Display highest salary employee from each department. -- AI
 
 SELECT d.department_name, e.first_name, e.last_name, e.salary
-FROM departments d
-JOIN employees e ON d.department_id = e.department_id
-JOIN (
-    SELECT department_id, MAX(salary) AS max_salary
-    FROM employees
-    GROUP BY department_id
-)
-max_salaries ON e.department_id = max_salaries.department_id AND e.salary = max_salaries.max_salary;
+FROM
+    departments d
+    JOIN employees e ON d.department_id = e.department_id
+    JOIN (
+        SELECT department_id, MAX(salary) AS max_salary
+        FROM employees
+        GROUP BY
+            department_id
+    ) max_salaries ON e.department_id = max_salaries.department_id
+    AND e.salary = max_salaries.max_salary;
 
 -- 76. Display lowest salary employee from each department. -- AI
 
 SELECT e.first_name, e.last_name, e.department_id, e.salary
 FROM employees e
 WHERE (e.department_id, e.salary) IN (
-    SELECT department_id, MIN(salary)
-    FROM employees
-    GROUP BY department_id
-);
+        SELECT department_id, MIN(salary)
+        FROM employees
+        GROUP BY
+            department_id
+    );
 
 -- 77. Display total salary paid by each department.
 
 SELECT d.department_name, SUM(e.salary) AS total_salary
 FROM departments d
-JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name;
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name;
 
 -- 78. Find departments having total salary greater than ₹2,00,000.
 
 SELECT d.department_name, SUM(e.salary) AS total_salary
 FROM departments d
-JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name
-HAVING SUM(e.salary) > 200000;
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
+HAVING
+    SUM(e.salary) > 200000;
 
 -- 79. Display employees working in India. -- error
 
 SELECT e.first_name, e.last_name, l.country
-FROM employees e
-JOIN departments d ON d.department_id = e.department_id
-JOIN locations l ON d.location_id = l.location_id
-WHERE l.country = 'India';
-
+FROM
+    employees e
+    JOIN departments d ON d.department_id = e.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE
+    l.country = 'India';
 
 SELECT l.country, COUNT(l.country)
-FROM employees e
-JOIN departments d ON d.department_id = e.department_id
-JOIN locations l ON d.location_id = l.location_id
-WHERE l.country IN ("India", "UK")
-GROUP BY l.country;
+FROM
+    employees e
+    JOIN departments d ON d.department_id = e.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE
+    l.country IN ("India", "UK")
+GROUP BY
+    l.country;
 
 -- 80. Display employees working in London. -- error
 
-SELECT e.first_name, e.last_name,l.country, l.city
-FROM employees e
-JOIN departments d ON d.department_id = e.department_id
-JOIN locations l ON d.location_id = l.location_id
-WHERE l.city = 'London';
-
+SELECT e.first_name, e.last_name, l.country, l.city
+FROM
+    employees e
+    JOIN departments d ON d.department_id = e.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE
+    l.city = 'London';
 
 -- ## Part 11: Multiple Conditions in JOIN
 
@@ -744,136 +976,163 @@ WHERE l.city = 'London';
 
 SELECT e.first_name, e.last_name, e.hire_date, d.department_name
 FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-WHERE e.hire_date > '2022-03-31';
+    JOIN departments d ON e.department_id = d.department_id
+WHERE
+    e.hire_date > '2022-03-31';
 
 -- 82. Display employees earning more than ₹48,000.
 
 SELECT e.first_name, e.last_name, e.salary
 FROM employees e
-WHERE e.salary > 48000;
+WHERE
+    e.salary > 48000;
 
 -- 83. Display employees earning between ₹45,000 and ₹48,000.
 
 SELECT e.first_name, e.last_name, e.salary
 FROM employees e
-WHERE e.salary BETWEEN 45000 AND 48000;
+WHERE
+    e.salary BETWEEN 45000 AND 48000;
 
 -- 84. Display employees whose department is Marketing.
 
 SELECT e.first_name, e.last_name
 FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-WHERE d.department_name = 'Marketing';
+    JOIN departments d ON e.department_id = d.department_id
+WHERE
+    d.department_name = 'Marketing';
 
 -- 85. Display employees working in Germany.
 
 SELECT e.first_name, e.last_name
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-WHERE l.country = 'Germany';
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE
+    l.country = 'Germany';
 
 -- 86. Display employees from departments located in Australia.
 
 SELECT e.first_name, e.last_name
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-WHERE l.country = 'Australia';
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE
+    l.country = 'Australia';
 
 -- 87. Display employees ordered by country and salary descending.
 
 SELECT e.first_name, e.last_name, l.country, e.salary
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
 ORDER BY l.country DESC, e.salary DESC;
 
 -- 88. Find departments where average salary exceeds ₹47,000.
 
 SELECT d.department_name, AVG(e.salary) AS avg_salary
 FROM departments d
-JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name
-HAVING AVG(e.salary) > 47000;
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
+HAVING
+    AVG(e.salary) > 47000;
 
 -- 89. Display employees hired in July.
 
 SELECT e.first_name, e.last_name, e.hire_date
 FROM employees e
-WHERE MONTH(e.hire_date) = 7;
+WHERE
+    MONTH(e.hire_date) = 7;
 
 -- 90. Display employees whose first name ends with "5".
 
 SELECT e.first_name, e.last_name
 FROM employees e
-WHERE e.first_name LIKE '%5';
-
+WHERE
+    e.first_name LIKE '%5';
 
 -- ## Part 12: JOIN + Aggregate Functions
 
 -- 91. Count employees in each country.
 
 SELECT l.country, COUNT(e.employee_id) AS total_employees
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.country;
 
 -- 92. Count departments in each country.
 
 SELECT l.country, COUNT(d.department_id) AS total_departments
 FROM departments d
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.country;
 
 -- 93. Find highest salary in every country.
 
 SELECT l.country, MAX(e.salary) AS highest_salary
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.country;
 
 -- 94. Find lowest salary in every location.
 
 SELECT l.city, MIN(e.salary) AS lowest_salary
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.city;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.city;
 
 -- 95. Find average salary by location.
 
 SELECT l.city, AVG(e.salary) AS average_salary
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.city;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.city;
 
 -- 96. Count employees having NULL department.
 
 SELECT COUNT(*) AS null_department_count
 FROM employees
-WHERE department_id IS NULL;
+WHERE
+    department_id IS NULL;
 
 -- 97. Find total salary by country.
 
 SELECT l.country, SUM(e.salary) AS total_salary
-FROM employees e
-JOIN departments d ON e.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.country;
 
 -- 98. Find departments having fewer than 5 employees.
 
 SELECT d.department_name, COUNT(e.employee_id) AS emp_count
 FROM departments d
-LEFT JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_id, d.department_name
-HAVING COUNT(e.employee_id) < 5;
-
+    LEFT JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
+HAVING
+    COUNT(e.employee_id) < 5;
 
 -- ## Part 13: Self JOIN
 
@@ -881,30 +1140,47 @@ HAVING COUNT(e.employee_id) < 5;
 
 -- 101. Display employee with manager name.
 
-SELECT e.EmpName AS Employee_Name, e.Title, m.EmpName AS Manager_Name
-FROM Employee_self e
-LEFT JOIN Employee_self m ON e.ManagerID = m.EmpID;
+SELECT
+    e.EmpName AS Employee_Name,
+    e.Title,
+    m.EmpName AS Manager_Name
+FROM
+    Employee_self e
+    LEFT JOIN Employee_self m ON e.ManagerID = m.EmpID;
 
 -- 102. Find employees without managers.
 
 SELECT e.EmpName AS Employee_Name, e.Title
-FROM Employee_self e
-LEFT JOIN Employee_self m ON e.ManagerID = m.EmpID
-WHERE m.EmpID IS NULL;
+FROM
+    Employee_self e
+    LEFT JOIN Employee_self m ON e.ManagerID = m.EmpID
+WHERE
+    m.EmpID IS NULL;
 
 -- 103. Display manager with total employees reporting.
 
-SELECT m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Total_Employees
-FROM Employee_self e
-RIGHT JOIN Employee_self m ON e.ManagerID = m.EmpID
-GROUP BY m.EmpID, m.EmpName;
+SELECT
+    m.EmpName AS Manager_Name,
+    COUNT(e.EmpID) AS Total_Employees
+FROM
+    Employee_self e
+    RIGHT JOIN Employee_self m ON e.ManagerID = m.EmpID
+GROUP BY
+    m.EmpID,
+    m.EmpName;
 
 -- 104. Find manager having maximum subordinates.
 
-SELECT m.EmpID AS Manager_ID, m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Subordinates_Count
-FROM Employee_self m
-JOIN Employee_self e ON m.EmpID = e.ManagerID
-GROUP BY m.EmpID, m.EmpName
+SELECT
+    m.EmpID AS Manager_ID,
+    m.EmpName AS Manager_Name,
+    COUNT(e.EmpID) AS Subordinates_Count
+FROM
+    Employee_self m
+    JOIN Employee_self e ON m.EmpID = e.ManagerID
+GROUP BY
+    m.EmpID,
+    m.EmpName
 ORDER BY Subordinates_Count DESC
 LIMIT 1;
 
@@ -912,48 +1188,66 @@ LIMIT 1;
 
 SELECT e.EmpName AS Employee_Name
 FROM Employee_self e
-WHERE e.ManagerID = (
-    SELECT EmpID
-    FROM Employee_self
-    WHERE EmpName = 'Emp1'
-);
+WHERE
+    e.ManagerID = (
+        SELECT EmpID
+        FROM Employee_self
+        WHERE
+            EmpName = 'Emp1'
+    );
 
 -- 106. Display employees reporting indirectly to a manager.
 
 SELECT e.EmpName AS Employee_Name
-FROM Employee_self e
-JOIN Employee_self m ON e.ManagerID = m.EmpID
-WHERE m.EmpName = 'Manager1';
+FROM
+    Employee_self e
+    JOIN Employee_self m ON e.ManagerID = m.EmpID
+WHERE
+    m.EmpName = 'Manager1';
 
 -- 107. Display employee-manager pairs ordered alphabetically.
 
 SELECT e.EmpName AS Employee_Name, m.EmpName AS Manager_Name
-FROM Employee_self e
-JOIN Employee_self m ON e.ManagerID = m.EmpID
+FROM
+    Employee_self e
+    JOIN Employee_self m ON e.ManagerID = m.EmpID
 ORDER BY e.EmpName, m.EmpName;
 
 -- 108. Count employees under each manager.
 
-SELECT m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Employee_Count
-FROM Employee_self e
-RIGHT JOIN Employee_self m ON e.ManagerID = m.EmpID
-GROUP BY m.EmpID, m.EmpName;
+SELECT
+    m.EmpName AS Manager_Name,
+    COUNT(e.EmpID) AS Employee_Count
+FROM
+    Employee_self e
+    RIGHT JOIN Employee_self m ON e.ManagerID = m.EmpID
+GROUP BY
+    m.EmpID,
+    m.EmpName;
 
 -- 109. Find managers with more than 3 employees.
 
-SELECT m.EmpID AS Manager_ID, m.EmpName AS Manager_Name, COUNT(e.EmpID) AS Employee_Count
-FROM Employee_self m
-JOIN Employee_self e ON m.EmpID = e.ManagerID
-GROUP BY m.EmpID, m.EmpName
-HAVING COUNT(e.EmpID) > 3;
+SELECT
+    m.EmpID AS Manager_ID,
+    m.EmpName AS Manager_Name,
+    COUNT(e.EmpID) AS Employee_Count
+FROM
+    Employee_self m
+    JOIN Employee_self e ON m.EmpID = e.ManagerID
+GROUP BY
+    m.EmpID,
+    m.EmpName
+HAVING
+    COUNT(e.EmpID) > 3;
 
 -- 110. Display top-level managers.
 
 SELECT m.EmpID AS Manager_ID, m.EmpName AS Manager_Name
-FROM Employee_self m
-LEFT JOIN Employee_self e ON m.EmpID = e.ManagerID
-WHERE e.EmpID IS NULL;
-
+FROM
+    Employee_self m
+    LEFT JOIN Employee_self e ON m.EmpID = e.ManagerID
+WHERE
+    e.EmpID IS NULL;
 
 -- ## Part 14: Projects Table
 
@@ -967,37 +1261,193 @@ CREATE TABLE projects (
     FOREIGN KEY (department_id) REFERENCES departments (department_id) ON DELETE SET NULL
 );
 
-INSERT INTO projects (project_id, project_name, department_id, budget) VALUES
-(1, 'HR Automation System', 101, 150000.00),
-(2, 'Q3 Financial Audit', 102, 85000.00),
-(3, 'Cloud Infrastructure Migration', 103, 500000.00),
-(4, 'Global Rebranding Campaign', 104, 320000.00),
-(5, 'Enterprise CRM Expansion', 105, 250000.00),
-(6, 'Supply Chain Optimization', 106, 180000.00),
-(7, 'Customer Success Portal', 107, 95000.00),
-(8, 'Next-Gen Product R&D', 108, 750000.00),
-(9, 'GDPR Compliance Overhaul', 109, 110000.00),
-(10, 'Unassigned Innovation Lab', NULL, 200000.00),
-(11, 'HR Talent Analytics', 101, 120000.00),
-(12, 'Automated Payroll Upgrade', 102, 95000.00),
-(13, 'Zero-Trust Cybersecurity Framework', 103, 620000.00),
-(14, 'Social Media Expansion', 104, 180000.00),
-(15, 'B2B Sales Pipeline Optimization', 105, 230000.00),
-(16, 'Logistics Tracking Portal', 106, 310000.00),
-(17, 'AI Chatbot Support Integration', 107, 140000.00),
-(18, 'Quantum Computing Feasibility Study', 108, 890000.00),
-(19, 'Intellectual Property Audit', 109, 105000.00),
-(20, 'Headquarters Office Remodel', 110, 450000.00),
-(21, 'APAC Regional Recruitment', 101, 85000.00),
-(22, 'Global Tax Restructuring', 102, 275000.00),
-(23, 'Data Warehouse Modernization', 103, 410000.00),
-(24, 'Influencer Marketing Push', 104, 130000.00),
-(25, 'Key Account Management Portal', 105, 195000.00),
-(26, 'Warehouse Automation Expansion', 106, 520000.00),
-(27, 'Omnichannel Helpdesk Rollout', 107, 160000.00),
-(28, 'Green Tech Sustainability Initiative', 108, 670000.00),
-(29, 'Contract Lifecycle Management', 109, 115000.00),
-(30, 'Unassigned Strategic Reserve', NULL, 1000000.00);
+INSERT INTO
+    projects (
+        project_id,
+        project_name,
+        department_id,
+        budget
+    )
+VALUES (
+        1,
+        'HR Automation System',
+        101,
+        150000.00
+    ),
+    (
+        2,
+        'Q3 Financial Audit',
+        102,
+        85000.00
+    ),
+    (
+        3,
+        'Cloud Infrastructure Migration',
+        103,
+        500000.00
+    ),
+    (
+        4,
+        'Global Rebranding Campaign',
+        104,
+        320000.00
+    ),
+    (
+        5,
+        'Enterprise CRM Expansion',
+        105,
+        250000.00
+    ),
+    (
+        6,
+        'Supply Chain Optimization',
+        106,
+        180000.00
+    ),
+    (
+        7,
+        'Customer Success Portal',
+        107,
+        95000.00
+    ),
+    (
+        8,
+        'Next-Gen Product R&D',
+        108,
+        750000.00
+    ),
+    (
+        9,
+        'GDPR Compliance Overhaul',
+        109,
+        110000.00
+    ),
+    (
+        10,
+        'Unassigned Innovation Lab',
+        NULL,
+        200000.00
+    ),
+    (
+        11,
+        'HR Talent Analytics',
+        101,
+        120000.00
+    ),
+    (
+        12,
+        'Automated Payroll Upgrade',
+        102,
+        95000.00
+    ),
+    (
+        13,
+        'Zero-Trust Cybersecurity Framework',
+        103,
+        620000.00
+    ),
+    (
+        14,
+        'Social Media Expansion',
+        104,
+        180000.00
+    ),
+    (
+        15,
+        'B2B Sales Pipeline Optimization',
+        105,
+        230000.00
+    ),
+    (
+        16,
+        'Logistics Tracking Portal',
+        106,
+        310000.00
+    ),
+    (
+        17,
+        'AI Chatbot Support Integration',
+        107,
+        140000.00
+    ),
+    (
+        18,
+        'Quantum Computing Feasibility Study',
+        108,
+        890000.00
+    ),
+    (
+        19,
+        'Intellectual Property Audit',
+        109,
+        105000.00
+    ),
+    (
+        20,
+        'Headquarters Office Remodel',
+        110,
+        450000.00
+    ),
+    (
+        21,
+        'APAC Regional Recruitment',
+        101,
+        85000.00
+    ),
+    (
+        22,
+        'Global Tax Restructuring',
+        102,
+        275000.00
+    ),
+    (
+        23,
+        'Data Warehouse Modernization',
+        103,
+        410000.00
+    ),
+    (
+        24,
+        'Influencer Marketing Push',
+        104,
+        130000.00
+    ),
+    (
+        25,
+        'Key Account Management Portal',
+        105,
+        195000.00
+    ),
+    (
+        26,
+        'Warehouse Automation Expansion',
+        106,
+        520000.00
+    ),
+    (
+        27,
+        'Omnichannel Helpdesk Rollout',
+        107,
+        160000.00
+    ),
+    (
+        28,
+        'Green Tech Sustainability Initiative',
+        108,
+        670000.00
+    ),
+    (
+        29,
+        'Contract Lifecycle Management',
+        109,
+        115000.00
+    ),
+    (
+        30,
+        'Unassigned Strategic Reserve',
+        NULL,
+        1000000.00
+    );
 
 SELECT * FROM projects;
 
@@ -1005,77 +1455,92 @@ SELECT * FROM projects;
 
 SELECT p.project_name, d.department_name
 FROM projects p
-JOIN departments d ON p.department_id = d.department_id;
+    JOIN departments d ON p.department_id = d.department_id;
 
 -- 112. Display project city.
 
 SELECT p.project_name, l.city
-FROM projects p
-JOIN departments d ON p.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id;
+FROM
+    projects p
+    JOIN departments d ON p.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id;
 
 -- 113. Display total project budget by country.
 
 SELECT l.country, SUM(p.budget) AS total_budget
-FROM projects p
-JOIN departments d ON p.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.country;
+FROM
+    projects p
+    JOIN departments d ON p.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.country;
 
 -- 114. Find departments having no projects.
 
 SELECT d.department_name
 FROM departments d
-LEFT JOIN projects p ON d.department_id = p.department_id
-WHERE p.project_id IS NULL;
+    LEFT JOIN projects p ON d.department_id = p.department_id
+WHERE
+    p.project_id IS NULL;
 
 -- 115. Find projects without departments.
 
 SELECT p.project_name
 FROM projects p
-LEFT JOIN departments d ON p.department_id = d.department_id
-WHERE d.department_id IS NULL;
+    LEFT JOIN departments d ON p.department_id = d.department_id
+WHERE
+    d.department_id IS NULL;
 
 -- 116. Display average project budget by location.
 
 SELECT l.city, AVG(p.budget) AS avg_project_budget
-FROM projects p
-JOIN departments d ON p.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-GROUP BY l.city;
+FROM
+    projects p
+    JOIN departments d ON p.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+GROUP BY
+    l.city;
 
 -- 117. Find department having highest project budget.
 
 SELECT d.department_name, SUM(p.budget) AS total_budget
 FROM departments d
-JOIN projects p ON d.department_id = p.department_id
-GROUP BY d.department_id, d.department_name
+    JOIN projects p ON d.department_id = p.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
 ORDER BY total_budget DESC
 LIMIT 1;
 
 -- 118. Display projects located in India.
 
 SELECT p.project_name, p.budget, l.city, l.country
-FROM projects p
-JOIN departments d ON p.department_id = d.department_id
-JOIN locations l ON d.location_id = l.location_id
-WHERE l.country = 'India';
+FROM
+    projects p
+    JOIN departments d ON p.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE
+    l.country = 'India';
 
 -- 119. Display all departments with project count.
 
 SELECT d.department_name, COUNT(p.project_id) AS project_count
 FROM departments d
-LEFT JOIN projects p ON d.department_id = p.department_id
-GROUP BY d.department_id, d.department_name;
+    LEFT JOIN projects p ON d.department_id = p.department_id
+GROUP BY
+    d.department_id,
+    d.department_name;
 
 -- 120. Find departments handling more than one project.
 
 SELECT d.department_name, COUNT(p.project_id) AS project_count
 FROM departments d
-JOIN projects p ON d.department_id = p.department_id
-GROUP BY d.department_id, d.department_name
-HAVING COUNT(p.project_id) > 1;
-
+    JOIN projects p ON d.department_id = p.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
+HAVING
+    COUNT(p.project_id) > 1;
 
 -- ## Part 15: Many-to-Many JOIN
 

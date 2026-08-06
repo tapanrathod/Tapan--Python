@@ -707,19 +707,246 @@ WHERE
     );
 
 -- 37. Find products ordered by more than one customer.
+
+SELECT *
+FROM Products p
+WHERE
+    product_id IN (
+        SELECT product_id
+        FROM Orders
+        GROUP BY
+            product_id
+        HAVING
+            COUNT(DISTINCT customer_id) > 1
+    );
+
 -- 38. Find products that only one customer has purchased.
+
+SELECT *
+FROM Products
+WHERE
+    product_id IN (
+        SELECT product_id
+        FROM Orders
+        GROUP BY
+            product_id
+        HAVING
+            COUNT(DISTINCT customer_id) = 1
+    );
+
 -- 39. Find employees who are assigned to at least one project.
+
+SELECT *
+FROM Employees e
+WHERE
+    EXISTS (
+        SELECT 1
+        FROM EmployeeProjects ep
+        WHERE
+            ep.employee_id = e.employee_id
+    );
+
 -- 40. Find employees who are not assigned to any project.
+
+SELECT *
+FROM Employees e
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM EmployeeProjects ep
+        WHERE
+            ep.employee_id = e.employee_id
+    );
+
 -- 41. Find projects that have no employees assigned.
+
+SELECT *
+FROM Projects p
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM EmployeeProjects ep
+        WHERE
+            ep.project_id = p.project_id
+    );
+
 -- 42. Find customers who bought the most expensive product.
+
+SELECT *
+FROM Customers
+WHERE
+    customer_id IN (
+        SELECT customer_id
+        FROM Orders
+        WHERE
+            product_id = (
+                SELECT product_id
+                FROM Products
+                WHERE
+                    price = (
+                        SELECT MAX(price)
+                        FROM Products
+                    )
+            )
+    );
+
 -- 43. Find employees hired before the oldest employee in Sales.
+
+SELECT *
+FROM Employees
+WHERE
+    hire_date < (
+        SELECT MIN(hire_date)
+        FROM Employees
+        WHERE
+            department_id = (
+                SELECT department_id
+                FROM Departments
+                WHERE
+                    department_name = 'Sales'
+            )
+    );
+
 -- 44. Find employees hired after the newest employee in HR.
+
+SELECT *
+FROM Employees
+WHERE
+    hire_date > (
+        SELECT MAX(hire_date)
+        FROM Employees
+        WHERE
+            department_id = (
+                SELECT department_id
+                FROM Departments
+                WHERE
+                    department_name = 'HR'
+            )
+    );
+
 -- 45. Find products whose price is greater than all products purchased by customer 'Arjun'.
+
+SELECT *
+FROM Products
+WHERE
+    price > ALL (
+        SELECT price
+        FROM Products
+        WHERE
+            product_id IN (
+                SELECT product_id
+                FROM Orders
+                WHERE
+                    customer_id = (
+                        SELECT customer_id
+                        FROM Customers
+                        WHERE
+                            customer_name = 'Arjun'
+                    )
+            )
+    );
+
 -- 46. Find customers who purchased every product that Arjun purchased.
+
+SELECT *
+FROM Customers c
+WHERE
+    customer_name <> 'Arjun'
+    AND NOT EXISTS (
+        SELECT product_id
+        FROM Orders
+        WHERE
+            customer_id = (
+                SELECT customer_id
+                FROM Customers
+                WHERE
+                    customer_name = 'Arjun'
+            )
+            AND product_id NOT IN(
+                SELECT product_id
+                FROM Orders
+                WHERE
+                    customer_id = c.customer_id
+            )
+    );
+
 -- 47. Find departments whose total salary exceeds the average department salary expense.
+
+SELECT *
+FROM Departments d
+WHERE
+    EXISTS (
+        SELECT 1
+        FROM Employees e
+        WHERE
+            e.department_id = d.department_id
+        GROUP BY
+            e.department_id
+        HAVING
+            SUM(e.salary) > (
+                SELECT AVG(total_salary)
+                FROM (
+                        SELECT SUM(salary) AS total_salary
+                        FROM Employees
+                        GROUP BY
+                            department_id
+                    ) AS subquery
+            )
+    );
+
 -- 48. Find employees whose salary is the second highest in the company (using subquery).
+
+SELECT *
+FROM Employees e
+WHERE
+    salary = (
+        SELECT MAX(salary)
+        FROM Employees
+        WHERE
+            salary < (
+                SELECT MAX(salary)
+                FROM Employees
+            )
+    );
+
 -- 49. Find the second most expensive product using a subquery.
+
+SELECT *
+FROM Products
+WHERE
+    price = (
+        SELECT MAX(price)
+        FROM Products
+        WHERE
+            price < (
+                SELECT MAX(price)
+                FROM Products
+            )
+    );
+
 -- 50. Find customers who never purchased products priced above the average product price.
+
+SELECT *
+FROM Customers c
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM Orders o
+        WHERE
+            o.customer_id = c.customer_id
+            AND EXISTS (
+                SELECT 1
+                FROM Products p
+                WHERE
+                    p.product_id = o.product_id
+                    AND p.price > (
+                        SELECT AVG(price)
+                        FROM Products
+                    )
+            )
+    );
+
+
 
 ---
 
