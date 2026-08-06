@@ -221,28 +221,166 @@ WHERE product_id NOT IN (SELECT DISTINCT product_id FROM Orders);
 ## Level 2 (Intermediate)
 
 -- 16. Find employees working in the department "IT" using a subquery.
+
+SELECT * FROM Employees 
+WHERE department_id = (SELECT department_id FROM Departments WHERE department_name = 'IT');
+
 -- 17. Find employees working in the same department as Amit.
+
+SELECT * FROM Employees 
+WHERE department_id = (SELECT department_id FROM Employees WHERE employee_name = 'Amit')
+AND employee_name <> 'Amit';
+
 -- 18. Find employees who earn more than every employee in HR.
+
+SELECT * FROM Employees 
+WHERE salary > ALL (
+SELECT salary FROM Employees 
+WHERE department_id = (SELECT department_id FROM Departments WHERE department_name = 'HR')
+);
+
 -- 19. Find employees who earn more than any employee in Sales.
+
+SELECT * FROM Employees 
+WHERE salary > ANY (
+SELECT salary FROM Employees 
+WHERE department_id = (SELECT department_id FROM Departments WHERE department_name = 'Sales')
+);
+
 -- 20. Find employees whose salary is equal to the maximum salary in their department.
--- 21. Find departments whose average salary is greater than the overall average salary.
+
+SELECT * FROM Employees e
+WHERE salary = (
+SELECT MAX(salary) FROM Employees 
+WHERE department_id = e.department_id
+);
+
+-- 21. Find departments whose average salary is greater than the overall average salary. -- AI
+
+SELECT * FROM Departments 
+WHERE department_id IN (
+SELECT department_id FROM Employees 
+GROUP BY department_id 
+HAVING AVG(salary) > (SELECT AVG(salary) FROM Employees)
+);
+
 -- 22. Find employees whose salary is above their department's average salary.
+
+SELECT * FROM employees e
+WHERE salary > (
+SELECT AVG(salary) FROM employees 
+WHERE department_id = e.department_id
+);
+
 -- 23. Find employees whose salary is below their department's average salary.
+
+SELECT * FROM employees e
+WHERE salary > (
+SELECT AVG(salary) FROM employees 
+WHERE department_id = e.department_id
+);
+
 -- 24. Find customers who ordered a Laptop.
+
+SELECT * FROM Customers c
+WHERE customer_id IN (
+SELECT customer_id FROM Orders o
+WHERE product_id = (SELECT product_id FROM Products WHERE product_name = 'Laptop')
+);
+
 -- 25. Find customers who purchased products costing more than ₹10,000.
+
+SELECT * FROM Customers c
+WHERE customer_id IN (
+SELECT customer_id FROM Orders o
+WHERE product_id IN (SELECT product_id FROM Products WHERE price > 10000)
+);
+
 -- 26. Find products purchased by customers from Ahmedabad.
+
+SELECT * FROM Products p
+WHERE product_id IN (
+SELECT product_id FROM Orders o
+WHERE customer_id IN (SELECT customer_id FROM Customers WHERE city = 'Ahmedabad')
+);
+
 -- 27. Find projects with the highest budget.
--- 28. Find employees working on the project with the highest budget.
+
+SELECT * FROM Projects 
+WHERE budget = (SELECT MAX(budget) FROM Projects);
+
+-- 28. Find employees working on the project with the highest budget. -- AI
+
+SELECT * FROM Employees 
+WHERE employee_id IN (
+SELECT employee_id FROM EmployeeProjects 
+WHERE project_id = (SELECT project_id FROM Projects WHERE budget = (SELECT MAX(budget) FROM Projects))
+);
+
 -- 29. Find projects with budget greater than the average project budget.
--- 30. Find departments that have more than two employees.
+
+SELECT * FROM Projects 
+WHERE budget > (SELECT AVG(budget) FROM Projects);
+
+-- 30. Find departments that have more than two employees. -- AI
+
+SELECT * FROM Departments 
+WHERE department_id IN (
+SELECT department_id 
+FROM Employees 
+GROUP BY department_id 
+HAVING COUNT(*) > 2
+);
+
 
 ## Level 3 (Correlated / EXISTS)
 
 -- 31. Find employees earning the highest salary in each department.
+
+SELECT * FROM Employees e
+WHERE salary = (
+SELECT MAX(salary) 
+FROM Employees 
+WHERE department_id = e.department_id
+);
+
 -- 32. Find employees earning the lowest salary in each department.
--- 33. Find departments that have at least one employee earning above ₹80,000.
--- 34. Find departments where every employee earns above ₹50,000.
+
+SELECT * FROM Employees e
+WHERE salary = (
+SELECT MIN(salary) 
+FROM Employees 
+WHERE department_id = e.department_id
+);
+
+-- 33. Find departments that have at least one employee earning above ₹80,000. -- AI
+
+SELECT * FROM Departments d
+WHERE EXISTS (
+SELECT 1 FROM Employees e 
+WHERE e.department_id = d.department_id AND e.salary > 80000
+);
+
+-- 34. Find departments where every employee earns above ₹50,000. -- AI
+
+SELECT * FROM Departments d
+WHERE NOT EXISTS (
+SELECT 1 FROM Employees e 
+WHERE e.department_id = d.department_id AND e.salary <= 50000
+) AND EXISTS (
+SELECT 1 FROM Employees e 
+WHERE e.department_id = d.department_id
+);
+
 -- 35. Find customers who ordered more than one product.
+
+SELECT * FROM Customers c
+WHERE customer_id IN (
+SELECT customer_id FROM Orders 
+GROUP BY customer_id 
+HAVING COUNT(*) > 1
+);
+
 -- 36. Find customers whose total ordered quantity is above the average quantity ordered by customers.
 -- 37. Find products ordered by more than one customer.
 -- 38. Find products that only one customer has purchased.
