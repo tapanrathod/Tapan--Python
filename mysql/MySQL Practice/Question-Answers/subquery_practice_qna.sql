@@ -5,6 +5,7 @@
 -- Dataset: `subquery_practice`
 
 -- Database:
+
 USE subquery_practice;
 
 -- Tables:
@@ -231,7 +232,9 @@ SELECT * FROM Products;
 
 SELECT * FROM Orders;
 
+
 -- Questions:
+
 
 ## Level 1 (Easy)
 
