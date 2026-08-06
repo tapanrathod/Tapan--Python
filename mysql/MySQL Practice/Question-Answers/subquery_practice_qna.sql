@@ -139,6 +139,7 @@ SELECT * FROM Orders;
 
 -- Questions:
 
+
 ## Level 1 (Easy)
 
 -- 1. Find employees whose salary is greater than the average salary.
