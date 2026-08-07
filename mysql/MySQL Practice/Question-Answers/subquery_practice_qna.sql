@@ -828,7 +828,7 @@ WHERE
             )
     );
 
--- 45. Find products whose price is greater than all products purchased by customer 'Arjun'.
+-- 45. Find products whose price is greater than all products purchased by customer 'Arjun'. -- AI
 
 SELECT *
 FROM Products
@@ -850,7 +850,7 @@ WHERE
             )
     );
 
--- 46. Find customers who purchased every product that Arjun purchased.
+-- 46. Find customers who purchased every product that Arjun purchased. -- AI
 
 SELECT *
 FROM Customers c
@@ -874,7 +874,7 @@ WHERE
             )
     );
 
--- 47. Find departments whose total salary exceeds the average department salary expense.
+-- 47. Find departments whose total salary exceeds the average department salary expense. -- AI
 
 SELECT *
 FROM Departments d
@@ -928,7 +928,7 @@ WHERE
             )
     );
 
--- 50. Find customers who never purchased products priced above the average product price.
+-- 50. Find customers who never purchased products priced above the average product price. -- AI
 
 SELECT *
 FROM Customers c
