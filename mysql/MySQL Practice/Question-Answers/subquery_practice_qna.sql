@@ -752,6 +752,7 @@ WHERE
 
 -- 40. Find employees who are not assigned to any project.
 
+
 SELECT *
 FROM Employees e
 WHERE
@@ -775,6 +776,8 @@ WHERE
     );
 
 -- 42. Find customers who bought the most expensive product.
+SELECT * FROM customers;
+SELECT * FROM orders;
 
 SELECT *
 FROM Customers
