@@ -22,7 +22,7 @@ START TRANSACTION;
 COMMIT;
 ```
 
-If something goes wrong:
+If something goes wrong:	
 
 ```sql
 ROLLBACK;
@@ -129,12 +129,12 @@ Transactions are commonly explained using the **ACID** properties.
 
 ACID stands for:
 
-| Property | Meaning |
-|---|---|
-| **A** | Atomicity |
+| Property    | Meaning     |
+| ----------- | ----------- |
+| **A** | Atomicity   |
 | **C** | Consistency |
-| **I** | Isolation |
-| **D** | Durability |
+| **I** | Isolation   |
+| **D** | Durability  |
 
 These are fundamental concepts in database transactions.
 
@@ -1097,12 +1097,12 @@ Instead of both freely operating at the same time.
 
 # 33. Isolation Level Comparison
 
-| Isolation Level | Dirty Read | Non-repeatable Read | Phantom Read |
-|---|---|---|---|
-| READ UNCOMMITTED | Possible | Possible | Possible |
-| READ COMMITTED | Prevented | Possible | Possible |
-| REPEATABLE READ | Prevented | Prevented | Generally handled differently by InnoDB's consistent reads |
-| SERIALIZABLE | Prevented | Prevented | Prevented |
+| Isolation Level  | Dirty Read | Non-repeatable Read | Phantom Read                                               |
+| ---------------- | ---------- | ------------------- | ---------------------------------------------------------- |
+| READ UNCOMMITTED | Possible   | Possible            | Possible                                                   |
+| READ COMMITTED   | Prevented  | Possible            | Possible                                                   |
+| REPEATABLE READ  | Prevented  | Prevented           | Generally handled differently by InnoDB's consistent reads |
+| SERIALIZABLE     | Prevented  | Prevented           | Prevented                                                  |
 
 For practical MySQL work:
 
