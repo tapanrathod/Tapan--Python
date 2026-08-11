@@ -1546,26 +1546,315 @@ HAVING
 
 -- Create `students`, `courses`, and `enrollments` tables.
 
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100)
+);
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100) NOT NULL,
+    credits INT
+);
+
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    enrollment_date DATE,
+    FOREIGN KEY (student_id) REFERENCES students (student_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses (course_id) ON DELETE CASCADE
+);
+
+-- Sample Data Insertion
+INSERT INTO
+    students (
+        student_id,
+        student_name,
+        email
+    )
+VALUES (
+        1,
+        'Aarav Sharma',
+        'aarav@example.com'
+    ),
+    (
+        2,
+        'Diya Patel',
+        'diya@example.com'
+    ),
+    (
+        3,
+        'Rohan Verma',
+        'rohan@example.com'
+    ),
+    (
+        4,
+        'Ananya Iyer',
+        'ananya@example.com'
+    ),
+    (
+        5,
+        'Kabir Mehta',
+        'kabir@example.com'
+    );
+
+INSERT INTO
+    courses (
+        course_id,
+        course_name,
+        credits
+    )
+VALUES (
+        101,
+        'Database Management Systems',
+        4
+    ),
+    (
+        102,
+        'Data Structures & Algorithms',
+        4
+    ),
+    (103, 'Web Development', 3),
+    (104, 'Machine Learning', 4),
+    (105, 'Cyber Security', 3);
+
+INSERT INTO
+    enrollments (
+        enrollment_id,
+        student_id,
+        course_id,
+        enrollment_date
+    )
+VALUES (1, 1, 101, '2025-01-10'),
+    (2, 1, 102, '2025-01-11'),
+    (3, 1, 104, '2025-01-12'),
+    (4, 2, 101, '2025-01-10'),
+    (5, 2, 103, '2025-01-15'),
+    (6, 3, 102, '2025-01-11'),
+    (7, 4, 101, '2025-01-10'),
+    (8, 4, 102, '2025-01-12');
+
+SELECT * FROM students;
+
+SELECT * FROM courses;
+
+SELECT * FROM enrollments;
+
 -- 121. Display student name with enrolled course.
+
+SELECT s.student_name, c.course_name
+FROM
+    students s
+    JOIN enrollments e ON s.student_id = e.student_id
+    JOIN courses c ON e.course_id = c.course_id;
+
 -- 122. Count courses per student.
+
+SELECT s.student_name, COUNT(e.course_id) AS course_count
+FROM students s
+    JOIN enrollments e ON s.student_id = e.student_id
+GROUP BY
+    s.student_id,
+    s.student_name;
+
 -- 123. Count students per course.
+
+SELECT c.course_name, COUNT(e.student_id) AS student_count
+FROM courses c
+    JOIN enrollments e ON c.course_id = e.course_id
+GROUP BY
+    c.course_id,
+    c.course_name;
+
 -- 124. Find students enrolled in more than two courses.
+
+SELECT s.student_name, COUNT(e.course_id) AS course_count
+FROM students s
+    JOIN enrollments e ON s.student_id = e.student_id
+GROUP BY
+    s.student_id,
+    s.student_name
+HAVING
+    COUNT(e.course_id) > 2;
+
 -- 125. Find courses having no students.
+
+SELECT c.course_name
+FROM courses c
+    LEFT JOIN enrollments e ON c.course_id = e.course_id
+WHERE
+    e.course_id IS NULL;
+
 -- 126. Find students not enrolled anywhere.
+
+SELECT s.student_name
+FROM students s
+    LEFT JOIN enrollments e ON s.student_id = e.student_id
+WHERE
+    e.student_id IS NULL;
+
 -- 127. Display total enrollments by course.
+
+SELECT c.course_name, COUNT(e.enrollment_id) AS enrollment_count
+FROM courses c
+    LEFT JOIN enrollments e ON c.course_id = e.course_id
+GROUP BY
+    c.course_id,
+    c.course_name;
+
 -- 128. Find most popular course.
+
+SELECT c.course_name, COUNT(e.student_id) AS student_count
+FROM courses c
+    JOIN enrollments e ON c.course_id = e.course_id
+GROUP BY
+    c.course_id,
+    c.course_name
+ORDER BY student_count DESC
+LIMIT 1;
+
 -- 129. Find least popular course.
+
+SELECT c.course_name, COUNT(e.student_id) AS student_count
+FROM courses c
+    JOIN enrollments e ON c.course_id = e.course_id
+GROUP BY
+    c.course_id,
+    c.course_name
+ORDER BY student_count ASC
+LIMIT 1;
+
 -- 130. Display all students and courses including unmatched records.
+
+SELECT s.student_name, c.course_name
+FROM
+    students s
+    LEFT JOIN enrollments e ON s.student_id = e.student_id
+    LEFT JOIN courses c ON e.course_id = c.course_id;
+    
 
 -- ## Challenge Questions
 
 -- 131. Find the top 3 customers by total spending.
+
+SELECT c.customer_name, SUM(o.amount) AS total_spent
+FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+ORDER BY total_spent DESC
+LIMIT 3;
+
 -- 132. Find the city with the highest sales.
+
+SELECT c.city, SUM(o.amount) AS total_sales
+FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.city
+ORDER BY total_sales DESC
+LIMIT 1;
+
 -- 133. Find the department having the highest average salary.
+
+SELECT d.department_name, AVG(e.salary) AS avg_salary
+FROM departments d
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    d.department_id,
+    d.department_name
+ORDER BY avg_salary DESC
+LIMIT 1;
+
 -- 134. Display the customer who purchased the most expensive product.
+
+SELECT c.customer_name, o.product_name, o.amount
+FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.amount = (
+        SELECT MAX(amount)
+        FROM orders
+    );
+
 -- 135. Display customers who purchased products from more than one category.
+
+SELECT c.customer_name, COUNT(DISTINCT o.category) AS distinct_categories
+FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    COUNT(DISTINCT o.category) > 1;
+
 -- 136. Find customers whose every order exceeds ₹20,000.
+
+SELECT c.customer_name
+FROM customers c
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM orders o
+        WHERE
+            c.customer_id = o.customer_id
+            AND o.amount <= 20000
+    );
+
 -- 137. Find departments where every employee earns above ₹45,000.
+
+SELECT d.department_name
+FROM departments d
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM employees e
+        WHERE
+            d.department_id = e.department_id
+            AND e.salary <= 45000
+    );
+
 -- 138. Display customers who bought both Mobile and Electronics products.
+
+SELECT c.customer_name
+FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+WHERE
+    o.category IN ('Mobile', 'Electronics')
+GROUP BY
+    c.customer_id,
+    c.customer_name
+HAVING
+    COUNT(DISTINCT o.category) = 2;
+
 -- 139. Display employees whose salary is above their department average.
+
+SELECT e.first_name, e.last_name, e.salary, d.department_name
+FROM
+    employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN (
+        SELECT department_id, AVG(salary) AS avg_sal
+        FROM employees
+        GROUP BY
+            department_id
+    ) dept_avg ON e.department_id = dept_avg.department_id
+WHERE
+    e.salary > dept_avg.avg_sal;
+
 -- 140. Find the country having the maximum number of employees.
+
+SELECT l.country, COUNT(e.employee_id) AS employee_count
+FROM
+    locations l
+    JOIN departments d ON l.location_id = d.location_id
+    JOIN employees e ON d.department_id = e.department_id
+GROUP BY
+    l.country
+ORDER BY employee_count DESC
+LIMIT 1;
+
+--
