@@ -675,7 +675,6 @@ SELECT `Department`, `Salary`, RANK() OVER (
 FROM Employees
 
 
-
 -- ## Challenge Questions
 
 -- 111. Find the average salary of employees from Ahmedabad.
